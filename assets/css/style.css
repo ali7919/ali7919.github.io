@@ -348,6 +348,7 @@ section {
   left: calc(50% - 20px);
 }
 .section-title p {
+  text-align: left;
   margin-bottom: 0;
 }
 
