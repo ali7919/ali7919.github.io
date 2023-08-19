@@ -314,6 +314,37 @@ section {
   overflow: hidden;
 }
 
+.section-title2 {
+  
+  padding-bottom: 30px;
+}
+.section-title2 h2 {
+  padding-left: 4%;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #3A9EFE;
+}
+
+.section-title2 h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 3px;
+  background: #3A9EFE;
+  bottom: 0;
+  
+}
+.section-title2 p {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+
 .section-title {
   text-align: center;
   padding-bottom: 30px;
@@ -380,6 +411,11 @@ section {
 }
 .about .content p:last-child {
   margin-bottom: 0;
+}
+
+.p-good_leftright {
+  padding-left: 4%;
+  padding-right: 4%;
 }
 
 /*--------------------------------------------------------------
@@ -514,18 +550,16 @@ section {
   margin-bottom: 30px;
 }
 .portfolio #portfolio-flters {
-  padding: 0;
-  margin: 0 auto 25px auto;
+  padding-left: 4%;
   list-style: none;
-  text-align: center;
   background: #fff;
   border-radius: 50px;
-  padding: 2px 15px;
 }
 .portfolio #portfolio-flters li {
   cursor: pointer;
   display: inline-block;
-  padding: 10px 15px;
+  padding: 10px 0px;
+  padding-right: 15px;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
