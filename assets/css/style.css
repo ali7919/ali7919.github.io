@@ -708,6 +708,139 @@ section {
   right: 15px;
 }
 
+.portfolio-featured {
+  margin-bottom: 50px;
+}
+
+.portfolio-featured-card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(69, 80, 91, 0.15);
+  aspect-ratio: 16 / 10;
+  background: #272829;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-featured-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(39, 40, 41, 0.92) 0%, rgba(39, 40, 41, 0.35) 45%, transparent 100%);
+  transition: background 0.3s ease;
+}
+
+.portfolio-featured-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px;
+  z-index: 2;
+}
+
+.portfolio-featured-content h3 {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 8px 0 0;
+}
+
+.portfolio-featured-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+.portfolio-featured-tag {
+  display: inline-block;
+  background: #3A9EFE;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.portfolio-featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(58, 158, 254, 0.25);
+}
+
+.portfolio-featured-card:hover img {
+  transform: scale(1.04);
+}
+
+.portfolio-featured-card:hover::after {
+  background: linear-gradient(to top, rgba(39, 40, 41, 0.95) 0%, rgba(58, 158, 254, 0.2) 50%, transparent 100%);
+}
+
+.portfolio-more {
+  padding-top: 10px;
+  border-top: 1px solid rgba(69, 80, 91, 0.12);
+}
+
+.portfolio-more-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.portfolio-more-grid .portfolio-item {
+  margin-bottom: 20px;
+}
+
+.portfolio-more-grid .portfolio-wrap {
+  border-radius: 8px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.portfolio-more-grid .portfolio-wrap::before {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.portfolio-more-grid .portfolio-wrap .portfolio-info::before,
+.portfolio-more-grid .portfolio-wrap .portfolio-info::after {
+  display: none;
+}
+
+.portfolio-more-grid .portfolio-wrap .portfolio-info h4 {
+  font-size: 15px;
+}
+
+.portfolio-more-grid .portfolio-wrap .portfolio-links a {
+  font-size: 22px;
+}
+
+.portfolio-more-grid .portfolio-wrap:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 767px) {
+  .portfolio-featured-content h3 {
+    font-size: 22px;
+  }
+
+  .portfolio-featured-content {
+    padding: 20px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
