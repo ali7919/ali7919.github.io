@@ -819,7 +819,8 @@ section {
 
 .portfolio-papers {
   margin-bottom: 50px;
-  padding: 36px 0 10px;
+  padding-top: 36px;
+  padding-bottom: 10px;
   border-top: 1px solid rgba(69, 80, 91, 0.12);
 }
 
