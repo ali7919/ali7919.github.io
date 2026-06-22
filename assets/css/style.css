@@ -488,6 +488,14 @@ section {
   transition: 0.9s;
   background-color: #3A9EFE;
 }
+.skill-chip {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 100%;
+}
 
 /*--------------------------------------------------------------
 # Resume
