@@ -751,16 +751,8 @@ section {
   padding: 5px 12px;
 }
 
-.portfolio-featured-secondary .portfolio-featured-content h3 {
-  font-size: 20px;
-}
-
-.portfolio-featured-secondary .portfolio-featured-content p {
-  font-size: 13px;
-}
-
-.portfolio-featured-secondary .portfolio-featured-content {
-  padding: 20px;
+.portfolio-featured-secondary {
+  margin-top: 4px;
 }
 
 .portfolio-featured-card img {
