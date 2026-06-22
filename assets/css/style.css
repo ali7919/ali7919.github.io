@@ -279,14 +279,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 #hero .social-links {
   margin-top: 30px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 #hero .social-links a {
   font-size: 24px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: #45505b;
   line-height: 1;
-  margin-right: 20px;
   transition: 0.3s;
+}
+#hero .social-links a .hf-icon {
+  font-size: 24px;
+  line-height: 1;
 }
 #hero .social-links a:hover {
   color: #3A9EFE;
@@ -294,6 +303,9 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 992px) {
   #hero {
     text-align: center;
+  }
+  #hero .social-links {
+    justify-content: center;
   }
   #hero h1 {
     font-size: 32px;
