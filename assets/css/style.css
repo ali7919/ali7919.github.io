@@ -712,6 +712,10 @@ section {
   margin-bottom: 50px;
 }
 
+.portfolio-featured-hero {
+  margin-bottom: 8px;
+}
+
 .portfolio-featured-card {
   display: block;
   position: relative;
@@ -721,6 +725,42 @@ section {
   aspect-ratio: 16 / 10;
   background: #272829;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-featured-card--hero {
+  aspect-ratio: 21 / 9;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(58, 158, 254, 0.2);
+}
+
+.portfolio-featured-card--hero .portfolio-featured-content {
+  padding: 36px 40px;
+}
+
+.portfolio-featured-card--hero .portfolio-featured-content h3 {
+  font-size: 36px;
+}
+
+.portfolio-featured-card--hero .portfolio-featured-content p {
+  font-size: 16px;
+  max-width: 520px;
+}
+
+.portfolio-featured-card--hero .portfolio-featured-tag {
+  font-size: 12px;
+  padding: 5px 12px;
+}
+
+.portfolio-featured-secondary .portfolio-featured-content h3 {
+  font-size: 20px;
+}
+
+.portfolio-featured-secondary .portfolio-featured-content p {
+  font-size: 13px;
+}
+
+.portfolio-featured-secondary .portfolio-featured-content {
+  padding: 20px;
 }
 
 .portfolio-featured-card img {
@@ -832,6 +872,18 @@ section {
 }
 
 @media (max-width: 767px) {
+  .portfolio-featured-card--hero {
+    aspect-ratio: 16 / 10;
+  }
+
+  .portfolio-featured-card--hero .portfolio-featured-content h3 {
+    font-size: 26px;
+  }
+
+  .portfolio-featured-card--hero .portfolio-featured-content {
+    padding: 24px;
+  }
+
   .portfolio-featured-content h3 {
     font-size: 22px;
   }
