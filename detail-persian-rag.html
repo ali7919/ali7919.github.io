@@ -15,8 +15,10 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -28,8 +30,23 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=8" rel="stylesheet">
+  <link href="assets/css/style.css?version=10" rel="stylesheet">
 </head>
+
+<style>
+  @font-face {
+    font-family: persianfont;
+    src: url(assets/fonts/iransansreg.ttf);
+    font-display: swap;
+  }
+
+  .portfolio-description p.fa,
+  p.fa {
+    font-family: persianfont, "Inter", sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+</style>
 
 <body>
 
@@ -63,8 +80,10 @@
       </div>
     </section>
   </main>
-
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
