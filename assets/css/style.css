@@ -939,9 +939,9 @@ section {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  background: var(--text);
+  background: transparent;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border);
+  border: 0;
   box-shadow: var(--shadow-md);
 }
 
@@ -1057,8 +1057,8 @@ section {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   aspect-ratio: 16 / 10;
-  background: var(--text);
-  border: 1px solid var(--border);
+  background: transparent;
+  border: 0;
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
