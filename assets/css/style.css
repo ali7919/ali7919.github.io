@@ -247,6 +247,7 @@ img {
 .nav-menu a i,
 .nav-menu a:focus i {
   font-size: 20px;
+  line-height: 1;
   flex-shrink: 0;
 }
 .nav-menu a span,
@@ -259,6 +260,9 @@ img {
   .nav-menu a,
   .nav-menu a:focus {
     width: 54px;
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: flex-start;
   }
   .nav-menu a span,
   .nav-menu a:focus span {
