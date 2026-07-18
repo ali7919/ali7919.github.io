@@ -442,6 +442,64 @@ img {
   -webkit-text-fill-color: transparent;
 }
 
+#hero .hero-description {
+  color: #94a3b8;
+  margin: 14px 0 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+#hero .hero-buttons {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+#hero .hero-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  letter-spacing: 0.01em;
+}
+
+#hero .hero-buttons .btn-view-work {
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), #6366f1);
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-glow);
+}
+
+#hero .hero-buttons .btn-view-work:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.45);
+}
+
+#hero .hero-buttons .btn-get-touch {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+#hero .hero-buttons .btn-get-touch:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-3px);
+}
+
 #hero .social-links {
   margin-top: 36px;
   display: flex;
@@ -521,6 +579,13 @@ img {
   }
   #hero .social-links {
     justify-content: center;
+  }
+  #hero .hero-buttons {
+    justify-content: center;
+  }
+  #hero .hero-description {
+    margin-left: auto;
+    margin-right: auto;
   }
   #hero .hero-badge {
     margin-left: auto;
