@@ -773,6 +773,40 @@ section {
   transform: scale(1.03);
 }
 
+/* Profile caption overlay on the about photo */
+.about .about-photo .profile-caption {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: rgba(0,0,0,0.52);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.about .about-photo .profile-caption .profile-name {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+}
+.about .about-photo .profile-caption .profile-role {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  margin-top: 2px;
+}
+
+@media (max-width: 576px) {
+  .about .about-photo .profile-caption {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+  .about .about-photo .profile-caption .profile-name { font-size: 0.95rem; }
+}
+
 /* Skill chips */
 .skill-tags {
   display: flex;
