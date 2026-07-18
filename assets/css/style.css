@@ -764,7 +764,7 @@ section {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border);
-  width: min(100%, 560px);
+  width: min(100%, 480px);
   aspect-ratio: 0.92;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0));
 }
