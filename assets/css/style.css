@@ -612,7 +612,7 @@ section {
 }
 
 #resume {
-  background: #fcfbf8;
+  background: var(--surface);
 }
 
 .section-title2 {
@@ -992,7 +992,7 @@ section {
   font-size: clamp(1.35rem, 2vw, 1.55rem);
   font-weight: 700;
   margin: 0 0 32px;
-  color: #23232a;
+  color: var(--text);
   letter-spacing: -0.02em;
 }
 
@@ -1007,7 +1007,7 @@ section {
 }
 
 .resume-timeline {
-  border-left: 1px solid #e4dac9;
+  border-left: 1px solid var(--border-strong);
   padding-left: 33px;
 }
 
@@ -1028,8 +1028,8 @@ section {
   border-radius: 50%;
   left: -42px;
   top: 4px;
-  background: #fcfbf8;
-  border: 2px solid #5d5ce5;
+  background: var(--surface);
+  border: 2px solid var(--primary);
 }
 
 .resume-item-heading,
@@ -1047,7 +1047,7 @@ section {
   font-weight: 600;
   text-transform: none;
   font-family: var(--font-display);
-  color: #25252c;
+  color: var(--text);
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -1058,7 +1058,7 @@ section {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #737382;
+  color: var(--text-muted);
   margin: 0;
   letter-spacing: 0.01em;
 }
@@ -1066,7 +1066,7 @@ section {
 .resume .resume-item ul {
   margin: 10px 0 0;
   padding-left: 17px;
-  color: #50505b;
+  color: var(--text-muted);
 }
 
 .resume .resume-item ul li {
@@ -1076,7 +1076,7 @@ section {
 }
 
 .resume .resume-item ul li::marker {
-  color: #5d5ce5;
+  color: var(--primary);
 }
 
 .resume-summary {
@@ -1091,9 +1091,9 @@ section {
   max-width: 690px;
   margin: 0;
   padding: 27px 28px;
-  border: 1px solid #e4dac9;
+  border: 1px solid var(--border-strong);
   border-radius: 26px;
-  color: #50505b;
+  color: var(--text-muted);
   font-size: 1.05rem;
   line-height: 1.7;
 }
@@ -1104,15 +1104,15 @@ section {
 }
 
 .resume-card {
-  border: 1px solid #e4dac9;
+  border: 1px solid var(--border-strong);
   border-radius: 26px;
   padding: 27px 28px;
-  background: rgba(255, 255, 255, 0.28);
+  background: var(--surface-2);
 }
 
 .resume-card p {
   margin: 7px 0 0;
-  color: #50505b;
+  color: var(--text-muted);
   font-size: 1.03rem;
   line-height: 1.45;
 }
@@ -1120,12 +1120,12 @@ section {
 .resume-card .resume-thesis {
   margin-top: 14px;
   padding-top: 11px;
-  border-top: 1px solid #e4dac9;
-  color: #737382;
+  border-top: 1px solid var(--border-strong);
+  color: var(--text-muted);
 }
 
 .resume-thesis strong {
-  color: #50505b;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
@@ -1147,8 +1147,8 @@ section {
   height: 66px;
   place-items: center;
   border-radius: 16px;
-  background: #ededfb;
-  color: #5d5ce5;
+  background: var(--primary-soft);
+  color: var(--primary-hover);
   font-family: var(--font-display);
   font-size: 1.55rem;
   font-weight: 700;
