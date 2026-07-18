@@ -691,6 +691,18 @@ section {
   padding-left: 4%;
   padding-right: 4%;
 }
+.about-row {
+  row-gap: 1.5rem;
+}
+.about-image-col {
+  display: flex;
+  justify-content: center;
+}
+.about-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /*--------------------------------------------------------------
 # About
@@ -752,6 +764,9 @@ section {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border);
+  width: min(100%, 560px);
+  aspect-ratio: 0.92;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0));
 }
 
 .about .about-photo::after {
@@ -766,6 +781,8 @@ section {
 .about .about-photo img {
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.6s var(--ease);
 }
 
@@ -794,8 +811,61 @@ section {
   color: rgba(255,255,255,0.92);
   margin-top: 2px;
 }
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.about-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.95rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.about-highlight-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.14), rgba(59, 130, 246, 0.14));
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+.about-highlight-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin-bottom: 0.15rem;
+}
+.about-highlight-value {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
 
 @media (max-width: 576px) {
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .about .about-photo {
+    width: 100%;
+  }
+
+  .about-image-col {
+    margin-bottom: 0.75rem;
+  }
+
   .about .about-photo .profile-caption {
     left: 10px;
     bottom: 10px;
