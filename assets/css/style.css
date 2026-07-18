@@ -1685,14 +1685,16 @@ section {
 
 .portfolio-more-body {
   display: flex;
-  min-height: 172px;
+  min-height: 0;
   flex: 1;
   flex-direction: column;
+  position: relative;
   padding: 24px 24px 20px;
 }
 
 .portfolio-more-body h4 {
   margin: 0 0 5px;
+  padding-right: 58px;
   color: var(--text);
   font-size: 1.14rem;
   font-weight: 700;
@@ -1707,25 +1709,23 @@ section {
 }
 
 .portfolio-more-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: auto;
-  padding-top: 15px;
-  border-top: 1px solid var(--border);
+  position: absolute;
+  top: 25px;
+  right: 24px;
+  margin: 0;
+  padding: 0;
   color: var(--text-muted);
   font-size: 0.76rem;
   line-height: 1.2;
 }
 
-.portfolio-more-meta span:last-child {
-  overflow: hidden;
+.portfolio-more-meta span:first-child {
   color: var(--text-muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.04em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.portfolio-more-meta span:last-child {
+  display: none;
 }
 
 .portfolio-more-grid .portfolio-more-item .portfolio-wrap:hover {
@@ -1761,8 +1761,12 @@ section {
     border-radius: var(--radius-md);
   }
   .portfolio-more-body {
-    min-height: 156px;
+    min-height: 0;
     padding: 21px 20px 18px;
+  }
+  .portfolio-more-meta {
+    top: 22px;
+    right: 20px;
   }
   .portfolio-more-tag {
     top: 14px;
