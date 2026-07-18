@@ -280,4 +280,92 @@
     onscroll(document, hideHeroScroll)
   }
 
+  /**
+   * GitHub profile and repository insights
+   */
+  const githubProfile = select('#github-profile')
+  if (githubProfile) {
+    const githubUsername = githubProfile.dataset.username
+    const githubApiUrl = `https://api.github.com/users/${encodeURIComponent(githubUsername)}`
+    const githubReposUrl = `https://api.github.com/users/${encodeURIComponent(githubUsername)}/repos?type=owner&per_page=100&sort=updated`
+    const githubContributionsUrl = `https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(githubUsername)}?y=last`
+    const githubHeaders = {
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+    const formatNumber = (value) => new Intl.NumberFormat().format(value || 0)
+    const setText = (selector, value) => {
+      const element = select(selector)
+      if (element) element.textContent = value
+    }
+
+    const githubFetch = (url) => fetch(url, { headers: githubHeaders }).then(response => {
+      if (!response.ok) throw new Error(`GitHub request failed: ${response.status}`)
+      return response.json()
+    })
+
+    const fetchRepositories = async (repositoryCount) => {
+      const repositories = []
+      const pageSize = 100
+      const pageCount = Math.max(1, Math.ceil((repositoryCount || pageSize) / pageSize))
+
+      for (let page = 1; page <= pageCount; page++) {
+        const batch = await githubFetch(`${githubReposUrl}&page=${page}`)
+        repositories.push(...batch)
+        if (batch.length < pageSize) break
+      }
+
+      return repositories
+    }
+
+    githubFetch(githubApiUrl)
+      .then(profile => {
+        const avatar = select('#github-profile-avatar')
+        if (avatar && profile.avatar_url) {
+          avatar.src = profile.avatar_url
+          avatar.alt = `${profile.login || githubUsername} GitHub avatar`
+        }
+
+        setText('#github-profile-name', profile.name || profile.login || githubUsername)
+        setText('#github-profile-login', `@${profile.login || githubUsername}`)
+        setText('#github-profile-bio', profile.bio || 'Open-source projects and research on GitHub.')
+
+        const profileLink = select('#github-profile-link')
+        if (profileLink && profile.html_url) profileLink.href = profile.html_url
+
+        const status = select('#github-profile-status')
+        if (status) {
+          status.textContent = ''
+          status.hidden = true
+        }
+        githubProfile.classList.add('is-loaded')
+
+        fetchRepositories(profile.public_repos)
+          .then(repositories => {
+            const totalStars = repositories.reduce((total, repository) => total + (repository.stargazers_count || 0), 0)
+            setText('#github-total-stars', formatNumber(totalStars))
+          })
+          .catch(() => {
+            setText('#github-total-stars', 'Unavailable')
+          })
+      })
+      .catch(() => {
+        const status = select('#github-profile-status')
+        if (status) status.textContent = 'Live GitHub profile details are temporarily unavailable.'
+        githubProfile.classList.add('is-error')
+      })
+
+    fetch(githubContributionsUrl)
+      .then(response => {
+        if (!response.ok) throw new Error(`Contribution request failed: ${response.status}`)
+        return response.json()
+      })
+      .then(data => {
+        const totals = data.total || {}
+        const contributionTotal = totals.lastYear ?? Object.values(totals).reduce((total, value) => total + value, 0)
+        setText('#github-contributions', formatNumber(contributionTotal))
+      })
+      .catch(() => setText('#github-contributions', 'Unavailable'))
+  }
+
 })()

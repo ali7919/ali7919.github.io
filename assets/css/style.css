@@ -1785,6 +1785,158 @@ section {
   min-height: 120px;
 }
 
+.github-profile {
+  margin-bottom: 34px;
+}
+
+.github-profile-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: center;
+  gap: 28px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.github-profile-intro {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 20px;
+}
+
+.github-profile-avatar {
+  flex: 0 0 88px;
+  width: 88px;
+  height: 88px;
+  border: 4px solid var(--surface);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--border-strong), var(--shadow-md);
+  object-fit: cover;
+}
+
+.github-profile-label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.github-profile-intro h4 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.35rem;
+}
+
+.github-profile-intro h4 .github-profile-login {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.github-profile-intro p {
+  max-width: 620px;
+  margin: 7px 0 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.github-profile-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 0;
+  gap: 20px;
+}
+
+.github-profile-link {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.github-profile-link i {
+  font-size: 1.1rem;
+  transition: transform 0.25s var(--ease);
+}
+
+.github-profile-link:hover i {
+  transform: translateX(3px);
+}
+
+.github-profile-stats {
+  display: flex;
+  width: 210px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.github-profile-stat {
+  padding: 13px 15px;
+  background: var(--surface-3);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.github-profile-stat strong,
+.github-profile-stat span {
+  display: block;
+}
+
+.github-profile-stat strong {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.github-profile-stat span {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+}
+
+.github-profile-status {
+  margin: 10px 0 0;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.github-profile-status[hidden] {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .github-profile-card {
+    display: block;
+    padding: 22px 20px;
+  }
+
+  .github-profile-side {
+    align-items: stretch;
+    margin-top: 22px;
+  }
+
+  .github-profile-link {
+    align-self: flex-start;
+  }
+
+  .github-profile-stats {
+    width: 100%;
+  }
+}
+
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
