@@ -400,6 +400,12 @@
           </div>
         </div>
 
+        <div class="github-repos p-good_leftright" data-aos="fade-up" data-aos-delay="225">
+          <h3 class="portfolio-papers-title">GitHub Repositories</h3>
+          <p class="portfolio-papers-subtitle">A selection of my most-starred open-source projects.</p>
+          <div id="my-github-repos" class="github-repos-widget" aria-live="polite"></div>
+        </div>
+
       </div>
     </section><!-- End Portfolio Section -->
 
@@ -442,6 +448,17 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js?version=10"></script>
+
+  <!-- GitHub repositories widget -->
+  <script src="https://cdn.jsdelivr.net/npm/repowidget/dist/repoWidget.min.js"></script>
+  <script>
+    createRepoWidget({
+      username: 'ali7919',
+      containerId: 'my-github-repos',
+      maxRepos: 3,
+      sortBy: 'stars'
+    });
+  </script>
 
 </body>
 
