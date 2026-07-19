@@ -210,8 +210,11 @@
    */
   const portfolioDetailsLightbox = GLightbox({
     selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
+    width: '760px',
+    height: '85vh',
+    openEffect: 'none',
+    closeEffect: 'none',
+    cssEffects: { zoomIn: '', zoomOut: '', fade: '' }
   });
 
   /**

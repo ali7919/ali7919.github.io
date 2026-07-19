@@ -2157,6 +2157,72 @@ section {
 }
 
 /*--------------------------------------------------------------
+# GLightbox overrides (project detail dialog)
+--------------------------------------------------------------*/
+/* Blurred backdrop */
+.glightbox-container .goverlay {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: pd-fade-in 0.3s ease both;
+}
+@keyframes pd-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Rounded dialog wrapper — fast clean pop-in */
+.glightbox-container .ginner-container {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  animation: pd-pop-in 0.45s var(--ease) both;
+}
+@keyframes pd-pop-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* The iframe slide should fill the rounded wrapper */
+.glightbox-container .gslide-media.gslide-external,
+.glightbox-container .gslide-media.gslide-external iframe {
+  border-radius: var(--radius-lg);
+}
+
+/* Hide next/prev arrows */
+.glightbox-container .gnext,
+.glightbox-container .gprev {
+  display: none !important;
+}
+
+/* Close button: bring inside the dialog, top-right corner */
+.glightbox-container .gclose {
+  top: calc(7.5vh + 14px);
+  right: calc(50% - 380px + 14px);
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  opacity: 1;
+  z-index: 10000;
+}
+@media (max-width: 800px) {
+  .glightbox-container .gclose {
+    right: 14px;
+    top: 14px;
+  }
+}
+.glightbox-container .gclose:hover {
+  background: #fff;
+  opacity: 1;
+}
+.glightbox-container .gclose svg path {
+  fill: var(--text);
+}
+
+/*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
 .services .icon-box {

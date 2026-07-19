@@ -5,11 +5,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Routino - Ali Mobarekati</title>
-
- 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Routino — Ali Mobarekati</title>
+  <meta content="Routino, a habit tracker for Android published on CafeBazaar. Developed and designed by Ali Mobarekati."
+    name="description">
+  <meta content="Routino, habit tracker, Android, CafeBazaar, Ali Mobarekati" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -31,98 +30,357 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=14" rel="stylesheet">
 
+  <style>
+    @font-face {
+      font-family: persianfont;
+      src: url(assets/fonts/iransansreg.ttf);
+      font-display: swap;
+    }
 
+    /* ===== Compact detail page (fits GLightbox dialog) ===== */
+    .pd-page {
+      min-height: 100vh;
+      background: var(--surface);
+      padding: 32px;
+      overflow-y: auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .pd-card {
+      width: 100%;
+      max-width: 720px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    /* Header: title + tag */
+    .pd-header {
+      padding: 24px 28px 0;
+    }
+    .pd-header-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--primary), #6366f1);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+      margin-bottom: 10px;
+    }
+    .pd-header-title {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0;
+      line-height: 1.15;
+    }
+    .pd-header-subtitle {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin: 6px 0 0;
+    }
+
+    /* Showcase image */
+    .pd-showcase {
+      margin: 20px 0 0;
+      padding: 0 28px;
+    }
+    .pd-showcase img {
+      width: 100%;
+      border-radius: var(--radius-md);
+      display: block;
+    }
+
+    /* Content */
+    .pd-content {
+      padding: 20px 28px 28px;
+    }
+
+    .pd-section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .pd-section-label::before {
+      content: "";
+      width: 16px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Meta grid */
+    .pd-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px 20px;
+      margin: 0 0 22px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pd-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .pd-meta-item strong {
+      font-size: 0.66rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-soft);
+    }
+    .pd-meta-item span,
+    .pd-meta-item a {
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.88rem;
+    }
+    .pd-meta-item a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.25s var(--ease);
+    }
+    .pd-meta-item a:hover { color: var(--primary); }
+
+    /* Description */
+    .pd-desc p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 0 12px;
+      font-size: 0.92rem;
+    }
+    .pd-desc p.fa {
+      font-family: persianfont, "Inter", sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.85;
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* Highlights */
+    .pd-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .pd-highlight {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .pd-highlight:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .pd-highlight-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .pd-highlight-value {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .pd-highlight-label {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-top: 1px;
+    }
+
+    /* Actions */
+    .pd-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .pd-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--primary), #6366f1);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .pd-cta:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+    }
+    .pd-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: color 0.25s var(--ease);
+    }
+    .pd-back:hover { color: var(--primary); }
+
+    @media (max-width: 600px) {
+      .pd-page { padding: 16px; }
+      .pd-header { padding: 20px 20px 0; }
+      .pd-showcase { padding: 0 20px; }
+      .pd-content { padding: 16px 20px 22px; }
+      .pd-header-title { font-size: 1.5rem; }
+    }
+  </style>
 </head>
-
-<style>
-  @font-face {
-    font-family: persianfont;
-    src: url(assets/fonts/iransansreg.ttf);
-    font-display: swap;
-  }
-
-  .portfolio-description p.fa,
-  p.fa {
-    font-family: persianfont, "Inter", sans-serif;
-    font-size: 1rem;
-    line-height: 1.8;
-  }
-</style>
 
 <body>
 
   <main id="main">
+    <div class="pd-page">
+      <div class="pd-card">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+        <!-- Header -->
+        <div class="pd-header">
+          <span class="pd-header-tag"><i class="bi bi-stars"></i> Featured on CafeBazaar</span>
+          <h1 class="pd-header-title">Routino</h1>
+          <p class="pd-header-subtitle">A habit tracker for Android — built from idea to launch</p>
+        </div>
 
-        <div class="row gy-4">
+        <!-- Showcase image -->
+        <div class="pd-showcase">
+          <img src="assets/img/details/routino.jpg" alt="Routino">
+        </div>
 
-          <div class="col-lg-8">
-            
+        <!-- Content -->
+        <div class="pd-content">
+          <div class="pd-section-label">Overview</div>
 
-            
-            <img src="assets/img/details/routino.jpg" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-            <h3 >Routino</h3>
-
-
-              <li><strong>Category</strong>: Android Studio - Java / Kotlin</li>
-              <li><strong> Start Date</strong>: January 2020 (Bahman 98)</li>
-                <li><strong>Project URL</strong>: <a href="https://cafebazaar.ir/app/com.ace.routino" target="_blank" rel="noopener noreferrer">CafeBazaar</a></li>
-              
-              </ul>
+          <div class="pd-meta">
+            <div class="pd-meta-item">
+              <strong>Category</strong>
+              <span>Android Studio — Java / Kotlin</span>
             </div>
-            <div class="portfolio-description">
-              <p>
-                Routino is a habit tracker which I and one of my friends worked on it,
-aside from its database I developed and designed the rest of it.
-Routino was published on CafeBazaar the biggest app market in Iran and
-was chosen by CafeBazaar to be listed on the home page.
-
-              </p>
-              <p dir="rtl">
-                روتینو یک habit tracker برای اندروید هست که میتونید اونو از کافه بازار و مارکت چارخونه دانلود کنید.<br>
-                روتینو در کافه بازار به رکورد 5000 نصب فعال رسید و در بخش های تازه های برگزیده و بهترین های جدید از نگاه
-                کافه بازار(صفحه اول) حضور یافت و در مارکت چارخونه هم به مدت یک ماه در صفحه اول بصورت رایگان پروموت شد.<br>
-                به جز بخش دیتابیس (ذخیره اطلاعات) تمامی برنامه توسط بنده توسعه یافت.
-  
-  
-                
-              </p>
+            <div class="pd-meta-item">
+              <strong>Start Date</strong>
+              <span>January 2020 (Bahman 98)</span>
+            </div>
+            <div class="pd-meta-item">
+              <strong>Role</strong>
+              <span>Developer & Designer</span>
+            </div>
+            <div class="pd-meta-item">
+              <strong>Platforms</strong>
+              <span>CafeBazaar · CharKhoneh</span>
+            </div>
+            <div class="pd-meta-item">
+              <strong>Project URL</strong>
+              <a href="https://cafebazaar.ir/app/com.ace.routino" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right"></i> CafeBazaar
+              </a>
             </div>
           </div>
 
+          <div class="pd-desc">
+            <p>
+              Routino is a habit tracker which a friend and I worked on together.
+              Aside from the database layer, I developed and designed the rest of the app end-to-end —
+              from the UI and user experience to the underlying logic and publishing flow.
+            </p>
+            <p>
+              Routino was published on <strong>CafeBazaar</strong>, the largest Android app market in Iran,
+              and was selected by CafeBazaar's editors to be featured on the home page.
+              It reached <strong>5,000 active installs</strong> and was also promoted for a month on the
+              <strong>CharKhoneh</strong> market's home page.
+            </p>
+            <p class="fa">
+              روتینو یک habit tracker برای اندروید است که می‌توانید آن را از کافه بازار و مارکت چارخونه دانلود کنید.<br>
+              روتینو در کافه بازار به رکورد ۵۰۰۰ نصب فعال رسید و در بخش‌های تازه‌های برگزیده و بهترین‌های جدید
+              از نگاه کافه بازار (صفحه اول) حضور یافت و در مارکت چارخونه هم به مدت یک ماه در صفحه اول به صورت رایگان پروموت شد.<br>
+              به جز بخش دیتابیس (ذخیره اطلاعات)، تمامی برنامه توسط بنده توسعه یافت.
+            </p>
+          </div>
+
+          <div class="pd-highlights">
+            <div class="pd-highlight">
+              <div class="pd-highlight-icon"><i class="bi bi-trophy"></i></div>
+              <div class="pd-highlight-value">5,000+</div>
+              <div class="pd-highlight-label">Active installs</div>
+            </div>
+            <div class="pd-highlight">
+              <div class="pd-highlight-icon"><i class="bi bi-star-fill"></i></div>
+              <div class="pd-highlight-value">Home page</div>
+              <div class="pd-highlight-label">CafeBazaar featured</div>
+            </div>
+            <div class="pd-highlight">
+              <div class="pd-highlight-icon"><i class="bi bi-rocket-takeoff"></i></div>
+              <div class="pd-highlight-value">1 month</div>
+              <div class="pd-highlight-label">CharKhoneh promo</div>
+            </div>
+            <div class="pd-highlight">
+              <div class="pd-highlight-icon"><i class="bi bi-people"></i></div>
+              <div class="pd-highlight-value">2</div>
+              <div class="pd-highlight-label">Team members</div>
+            </div>
+          </div>
+
+          <div class="pd-actions">
+            <a href="https://cafebazaar.ir/app/com.ace.routino" target="_blank" rel="noopener noreferrer" class="pd-cta">
+              <i class="bi bi-download"></i> View on CafeBazaar
+            </a>
+            <a href="index.html#portfolio" class="pd-back">
+              <i class="bi bi-arrow-left"></i> Back to portfolio
+            </a>
+          </div>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script>
+    AOS.init({ duration: 600, once: true, offset: 40 });
+  </script>
 
 </body>
 
