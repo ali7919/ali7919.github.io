@@ -1985,23 +1985,96 @@ section {
   }
 
   .github-profile-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .github-profile-intro {
+    gap: 14px;
+  }
+
+  .github-profile-avatar {
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .github-profile-intro h4 {
+    font-size: 1.15rem;
+  }
+
+  .github-profile-intro h4 .github-profile-login {
     display: block;
-    padding: 16px;
+    margin-top: 2px;
   }
 
   .github-profile-side {
     flex-direction: column;
     align-items: stretch;
-    margin-top: 18px;
-    gap: 14px;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
   }
 
   .github-profile-link {
-    align-self: flex-start;
+    justify-content: center;
+    align-self: stretch;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
   }
 
   .github-profile-stats {
     width: 100%;
+    gap: 10px;
+  }
+
+  .github-profile-stat {
+    flex: 1 1 0;
+    padding: 10px 12px;
+  }
+
+  .github-profile-stat strong {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .github-profile-card {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .github-profile-intro {
+    gap: 12px;
+  }
+
+  .github-profile-avatar {
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .github-profile-intro h4 {
+    font-size: 1.05rem;
+  }
+
+  .github-profile-label {
+    font-size: 0.68rem;
+  }
+
+  .github-profile-stat {
+    padding: 8px 10px;
+  }
+
+  .github-profile-stat strong {
+    font-size: 1.05rem;
+  }
+
+  .github-profile-stat span {
+    font-size: 0.7rem;
   }
 }
 
