@@ -1776,13 +1776,29 @@ section {
 
 .github-showcase {
   margin-top: 56px;
-  padding-top: 40px;
-  padding-bottom: 18px;
-  border-top: 1px solid var(--border);
+}
+
+.github-showcase-card {
+  padding: 32px;
+  background: linear-gradient(135deg, var(--surface), #fbfdff);
+  border: 1px solid var(--border-strong);
+  border-radius: 22px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.github-showcase-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
 }
 
 .github-showcase-heading {
-  margin-bottom: 26px;
+  margin-bottom: 0;
 }
 
 .github-showcase-heading .portfolio-papers-title {
@@ -1798,7 +1814,7 @@ section {
 }
 
 .github-profile {
-  margin-top: 32px;
+  margin-top: 0;
 }
 
 .github-profile-card {
@@ -1808,21 +1824,15 @@ section {
   grid-template-columns: minmax(0, 1fr) 220px;
   align-items: center;
   gap: 28px;
-  padding: 30px;
-  background: linear-gradient(135deg, var(--surface), #fbfdff);
-  border: 1px solid var(--border-strong);
-  border-radius: 22px;
-  box-shadow: var(--shadow-md);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .github-profile-card::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  content: "";
+  display: none;
 }
 
 .github-profile-intro {
@@ -1950,10 +1960,25 @@ section {
   display: none;
 }
 
+@media (max-width: 991px) {
+  .github-showcase-card {
+    padding: 24px;
+  }
+
+  .github-showcase-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 @media (max-width: 767px) {
+  .github-showcase-card {
+    padding: 20px;
+  }
+
   .github-profile-card {
     display: block;
-    padding: 26px 20px 22px;
+    padding: 0;
   }
 
   .github-profile-side {
