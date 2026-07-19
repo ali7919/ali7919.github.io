@@ -1788,10 +1788,9 @@ section {
 }
 
 .github-showcase-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   padding-bottom: 24px;
   margin-bottom: 24px;
   border-bottom: 1px solid var(--border);
@@ -1799,6 +1798,7 @@ section {
 
 .github-showcase-heading {
   margin-bottom: 0;
+  text-align: center;
 }
 
 .github-showcase-heading .portfolio-papers-title {
@@ -1821,14 +1821,14 @@ section {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 28px;
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--surface-3), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .github-profile-card::before {
@@ -1843,10 +1843,10 @@ section {
 }
 
 .github-profile-avatar {
-  flex: 0 0 88px;
-  width: 88px;
-  height: 88px;
-  border: 4px solid var(--surface);
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border: 3px solid var(--surface);
   border-radius: 50%;
   box-shadow: 0 0 0 1px var(--border-strong), var(--shadow-md);
   object-fit: cover;
@@ -1886,14 +1886,14 @@ section {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: center;
   min-width: 0;
-  gap: 20px;
+  gap: 24px;
 }
 
 .github-profile-link {
-  align-self: flex-end;
+  align-self: center;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -1913,15 +1913,14 @@ section {
 
 .github-profile-stats {
   display: flex;
-  width: 210px;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  gap: 12px;
 }
 
 .github-profile-stat {
-  padding: 13px 15px;
-  background: var(--surface-3);
-  border: 1px solid rgba(15, 23, 42, 0.04);
+  padding: 10px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   text-align: center;
   transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
@@ -1966,8 +1965,17 @@ section {
   }
 
   .github-showcase-header {
+    gap: 16px;
+  }
+
+  .github-profile-card {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .github-profile-side {
+    justify-content: space-between;
   }
 }
 
@@ -1978,12 +1986,14 @@ section {
 
   .github-profile-card {
     display: block;
-    padding: 0;
+    padding: 16px;
   }
 
   .github-profile-side {
+    flex-direction: column;
     align-items: stretch;
-    margin-top: 22px;
+    margin-top: 18px;
+    gap: 14px;
   }
 
   .github-profile-link {
