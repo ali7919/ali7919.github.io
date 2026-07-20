@@ -2175,7 +2175,7 @@ section {
 .glightbox-container .ginner-container {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
   animation: pd-pop-in 0.45s var(--ease) both;
 }
 @keyframes pd-pop-in {
@@ -2188,6 +2188,9 @@ section {
 .glightbox-container .gslide-media.gslide-external iframe {
   border-radius: var(--radius-lg);
 }
+.glightbox-container .gslide-media.gslide-external {
+  background: transparent;
+}
 
 /* Hide next/prev arrows */
 .glightbox-container .gnext,
@@ -2198,7 +2201,7 @@ section {
 /* Close button: bring inside the dialog, top-right corner */
 .glightbox-container .gclose {
   top: calc(7.5vh + 14px);
-  right: calc(50% - 380px + 14px);
+  right: calc((100vw - min(1320px, calc(100vw - 48px))) / 2 + 14px);
   width: 38px;
   height: 38px;
   background: rgba(255, 255, 255, 0.95);

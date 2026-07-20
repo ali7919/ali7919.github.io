@@ -30,7 +30,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=14" rel="stylesheet">
+  <link href="assets/css/style.css?version=17" rel="stylesheet">
 
   <style>
     @font-face {
@@ -39,10 +39,22 @@
       font-display: swap;
     }
 
+    html,
+    body,
+    #main {
+      background: transparent;
+    }
+
+    @media (min-width: 992px) {
+      #main {
+        margin-left: 0;
+      }
+    }
+
     /* ===== Compact detail page (fits GLightbox dialog) ===== */
     .pd-page {
       min-height: 100vh;
-      background: var(--surface);
+      background: transparent;
       padding: 32px;
       overflow-y: auto;
       display: flex;
@@ -52,7 +64,7 @@
 
     .pd-card {
       width: 100%;
-      max-width: 720px;
+      max-width: 1320px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
@@ -93,10 +105,19 @@
       margin: 6px 0 0;
     }
 
+    /* Image + project description */
+    .pd-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(400px, 1fr);
+      align-items: start;
+      gap: 32px;
+      padding: 20px 28px 28px;
+    }
+
     /* Showcase image */
     .pd-showcase {
-      margin: 20px 0 0;
-      padding: 0 28px;
+      margin: 0;
+      padding: 0;
     }
     .pd-showcase img {
       width: 100%;
@@ -106,7 +127,8 @@
 
     /* Content */
     .pd-content {
-      padding: 20px 28px 28px;
+      padding: 0;
+      min-width: 0;
     }
 
     .pd-section-label {
@@ -256,6 +278,20 @@
     }
     .pd-back:hover { color: var(--primary); }
 
+    @media (max-width: 1100px) {
+      .pd-layout {
+        display: block;
+        padding: 0;
+      }
+      .pd-showcase {
+        margin: 20px 0 0;
+        padding: 0 28px;
+      }
+      .pd-content {
+        padding: 20px 28px 28px;
+      }
+    }
+
     @media (max-width: 600px) {
       .pd-page { padding: 16px; }
       .pd-header { padding: 20px 20px 0; }
@@ -279,13 +315,14 @@
           <p class="pd-header-subtitle">A habit tracker for Android — built from idea to launch</p>
         </div>
 
-        <!-- Showcase image -->
-        <div class="pd-showcase">
-          <img src="assets/img/details/routino.jpg" alt="Routino">
-        </div>
+        <!-- Showcase image + project description -->
+        <div class="pd-layout">
+          <div class="pd-showcase">
+            <img src="assets/img/details/routino.jpg" alt="Routino">
+          </div>
 
-        <!-- Content -->
-        <div class="pd-content">
+          <!-- Content -->
+          <div class="pd-content">
           <div class="pd-section-label">Overview</div>
 
           <div class="pd-meta">
@@ -363,6 +400,7 @@
             <a href="index.html#portfolio" class="pd-back">
               <i class="bi bi-arrow-left"></i> Back to portfolio
             </a>
+          </div>
           </div>
         </div>
 

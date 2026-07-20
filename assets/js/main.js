@@ -210,7 +210,7 @@
    */
   const portfolioDetailsLightbox = GLightbox({
     selector: '.portfolio-details-lightbox',
-    width: '760px',
+    width: 'min(1320px, calc(100vw - 48px))',
     height: '85vh',
     openEffect: 'none',
     closeEffect: 'none',
