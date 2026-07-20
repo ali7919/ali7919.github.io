@@ -2175,6 +2175,7 @@ section {
 .glightbox-container .ginner-container {
   border-radius: var(--radius-lg);
   overflow: hidden;
+  background: #fff;
   box-shadow: none;
   animation: pd-pop-in 0.45s var(--ease) both;
 }
@@ -2189,7 +2190,7 @@ section {
   border-radius: var(--radius-lg);
 }
 .glightbox-container .gslide-media.gslide-external {
-  background: transparent;
+  background: #fff;
 }
 
 /* Hide next/prev arrows */
