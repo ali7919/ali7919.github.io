@@ -140,80 +140,13 @@
       flex: 1 1 auto;
     }
 
-    .rn-topbar-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 5px 12px;
-      border-radius: var(--radius-full);
-      background: #fff;
-      border: 1px solid var(--rn-line);
-      color: var(--rn-soft);
-      font-size: 0.74rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-
-    /* ---------------- Hero ---------------- */
-    .rn-hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: 26px;
-      padding: 38px 40px 34px;
-      color: #fff;
-      background:
-        radial-gradient(120% 130% at 90% 6%, rgba(4, 216, 114, 0.3), transparent 55%),
-        radial-gradient(90% 120% at 2% 100%, rgba(4, 216, 114, 0.16), transparent 58%),
-        linear-gradient(140deg, #0a1120 0%, #101a2e 58%, #0b1727 100%);
-      box-shadow: 0 34px 60px -34px rgba(11, 18, 32, 0.6);
-    }
-
-    .rn-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 46px 46px;
-      -webkit-mask-image: radial-gradient(115% 110% at 18% 0%, #000 18%, transparent 72%);
-      mask-image: radial-gradient(115% 110% at 18% 0%, #000 18%, transparent 72%);
-      pointer-events: none;
-    }
-
-    .rn-hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
-      align-items: center;
-      gap: 34px;
-    }
-
-    .rn-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.1rem, 4.6vw, 3.1rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      color: #fff;
-      margin: 0;
-    }
-
-    .rn-subtitle {
-      color: rgba(226, 232, 240, 0.78);
-      font-size: clamp(0.95rem, 1.6vw, 1.06rem);
-      line-height: 1.6;
-      margin: 12px 0 0;
-      max-width: 46ch;
-    }
-
+    /* Chips — used in the breadcrumb bar */
     .rn-chips {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 22px 0 0;
+      margin: 0;
       padding: 0;
     }
 
@@ -221,27 +154,69 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 7px 13px;
+      padding: 5px 12px;
       border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: rgba(226, 232, 240, 0.9);
-      font-size: 0.78rem;
-      font-weight: 500;
+      background: #fff;
+      border: 1px solid var(--rn-line);
+      color: var(--rn-body);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
       line-height: 1;
     }
 
     .rn-chips li i {
-      color: var(--rn-green);
-      font-size: 0.9rem;
+      color: var(--rn-green-ink);
+      font-size: 0.85rem;
     }
 
-    .rn-actions {
+    /* ---------------- Page header ---------------- */
+    .rn-head {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      gap: 12px;
-      margin-top: 26px;
+      gap: 18px;
+      padding: 4px 4px 0;
+    }
+
+    .rn-head-icon {
+      flex: 0 0 auto;
+      width: 76px;
+      height: 76px;
+      padding: 4px;
+      border-radius: 21px;
+      background: #fff;
+      border: 1px solid var(--rn-line);
+      box-shadow: var(--rn-shadow);
+    }
+
+    .rn-head-icon img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 17px;
+      object-fit: cover;
+    }
+
+    .rn-head-copy {
+      min-width: 0;
+    }
+
+    .rn-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--rn-ink);
+      margin: 0;
+    }
+
+    .rn-subtitle {
+      color: var(--rn-body);
+      font-size: clamp(0.92rem, 1.5vw, 1rem);
+      line-height: 1.6;
+      margin: 5px 0 0;
+      max-width: 46ch;
     }
 
     .rn-btn {
@@ -285,31 +260,6 @@
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
-    }
-
-    /* App icon */
-    .rn-icon-card {
-      justify-self: center;
-      width: clamp(150px, 20vw, 206px);
-      aspect-ratio: 1 / 1;
-      padding: 9px;
-      border-radius: 42px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: 0 28px 60px -22px rgba(4, 216, 114, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      transition: transform 0.5s var(--ease);
-    }
-
-    .rn-icon-card img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: 34px;
-      object-fit: cover;
-    }
-
-    .rn-icon-card:hover {
-      transform: translateY(-4px) rotate(-1.5deg);
     }
 
     /* ---------------- Sections ---------------- */
@@ -575,7 +525,6 @@
         transition: none;
       }
 
-      .rn-icon-card,
       .rn-btn {
         transition: none !important;
       }
@@ -583,16 +532,6 @@
 
     /* ---------------- Responsive ---------------- */
     @media (max-width: 1024px) {
-      .rn-hero-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-      .rn-icon-card {
-        justify-self: start;
-        width: clamp(120px, 26vw, 168px);
-      }
-
       .rn-detail {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -612,27 +551,30 @@
         width: calc(100% - 24px);
       }
 
-      .rn-hero {
-        padding: 28px 22px 26px;
-        border-radius: 22px;
-      }
-
       .rn-panel,
       .rn-cta {
         padding: 24px 20px;
         border-radius: 20px;
       }
 
-      .rn-icon-card {
-        width: 132px;
-        border-radius: 34px;
+      .rn-head {
+        gap: 14px;
       }
 
-      .rn-icon-card img {
-        border-radius: 27px;
+      .rn-head-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 17px;
       }
 
-      .rn-actions .rn-btn,
+      .rn-head-icon img {
+        border-radius: 13px;
+      }
+
+      .rn-topbar {
+        row-gap: 10px;
+      }
+
       .rn-cta-actions .rn-btn {
         flex: 1 1 auto;
         justify-content: center;
@@ -663,35 +605,20 @@
           <span class="rn-sep" aria-hidden="true">/</span>
           <span class="rn-current">Routino</span>
           <span class="rn-topbar-spacer"></span>
-          <span class="rn-topbar-meta"><i class="bi bi-phone"></i> Android</span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-phone"></i> Android</li>
+            <li><i class="bi bi-code-slash"></i> Java · Kotlin</li>
+          </ul>
         </nav>
 
-        <!-- ============ Hero ============ -->
-        <header class="rn-hero">
-          <div class="rn-hero-grid">
-            <div class="rn-hero-copy">
-              <h1 class="rn-title">Routino</h1>
-              <p class="rn-subtitle">A habit tracker for Android</p>
-
-              <ul class="rn-chips">
-                <li><i class="bi bi-phone"></i> Android</li>
-                <li><i class="bi bi-code-slash"></i> Java · Kotlin</li>
-              </ul>
-
-              <div class="rn-actions">
-                <a class="rn-btn rn-btn-primary" href="https://cafebazaar.ir/app/com.ace.routino" target="_blank"
-                  rel="noopener noreferrer">
-                  <i class="bi bi-box-arrow-up-right"></i> View on CafeBazaar
-                </a>
-                <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
-                  <i class="bi bi-arrow-left"></i> Back to portfolio
-                </a>
-              </div>
-            </div>
-
-            <div class="rn-icon-card">
-              <img src="assets/img/portfolio/routino.jpg" alt="Routino">
-            </div>
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/routino.jpg" alt="Routino">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">Routino</h1>
+            <p class="rn-subtitle">A habit tracker for Android</p>
           </div>
         </header>
 
