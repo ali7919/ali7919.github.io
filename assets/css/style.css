@@ -1441,25 +1441,6 @@ section {
   transition: opacity 0.45s var(--ease);
 }
 
-/* Single light sweep that fires on hover */
-.portfolio-featured-sheen {
-  position: absolute;
-  top: -50%;
-  left: 0;
-  z-index: 1;
-  width: 34%;
-  height: 200%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.18),
-    rgba(255, 255, 255, 0)
-  );
-  transform: rotate(16deg) translateX(-160%);
-  opacity: 0;
-  pointer-events: none;
-}
-
 .portfolio-featured-content {
   position: absolute;
   left: 0;
@@ -1532,11 +1513,6 @@ section {
 .portfolio-featured-card:hover::after,
 .portfolio-featured-card:focus-visible::after {
   opacity: 1;
-}
-
-.portfolio-featured-card:hover .portfolio-featured-sheen,
-.portfolio-featured-card:focus-visible .portfolio-featured-sheen {
-  animation: card-sheen 1.15s ease-in-out forwards;
 }
 
 /* Research papers */
@@ -1937,7 +1913,7 @@ section {
 
 .portfolio-more-item:hover .portfolio-more-media::after,
 .portfolio-more-item:focus-within .portfolio-more-media::after {
-  animation: card-sheen 1s ease-in-out forwards;
+  animation: card-sheen 0.9s var(--ease) forwards;
 }
 
 .portfolio-more-grid .portfolio-more-item .portfolio-wrap:hover img,
@@ -2020,9 +1996,6 @@ section {
     transform: none;
   }
   .portfolio-more-media::after {
-    animation: none !important;
-  }
-  .portfolio-featured-sheen {
     animation: none !important;
   }
   .portfolio-more-grid .portfolio-more-item .portfolio-wrap:hover img,
