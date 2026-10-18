@@ -1,4 +1,4 @@
-﻿This is a static portfolio and project showcase website. 
+This is a static portfolio and project showcase website. 
 It uses plain HTML, CSS, JavaScript, and vendor libraries like Bootstrap, Swiper, and Isotope.
 
 ## General Guidelines

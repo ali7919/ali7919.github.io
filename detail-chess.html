@@ -35,21 +35,6 @@
 
 </head>
 
-<style>
-  @font-face {
-    font-family: persianfont;
-    src: url(assets/fonts/iransansreg.ttf);
-    font-display: swap;
-  }
-
-  .portfolio-description p.fa,
-  p.fa {
-    font-family: persianfont, "Inter", sans-serif;
-    font-size: 1rem;
-    line-height: 1.8;
-  }
-</style>
-
 <body>
 
   <main id="main">
@@ -79,14 +64,10 @@
             <div class="portfolio-description">
               <p>
                 A chess game with 2 game types a 1 Player and a 2 Player made in android
-studio with JAVA, the AI was a MIN-MAX algorithm
-              </p>
-              <p dir="rtl">
-
-                بازی شطرنج شامل دو حالت تک نفره (1P) و دونفره (2P) (با یک دستگاه) که برای حالت تک نفره، Ai رو با الگوریتم min max با عمق 3 نوشتم. <br>
-                در هر مرحله روی مهره مورد نظر کلیک میکنیم سپس خانه هایی که میشود مهره مورد نظر را به آن برد روشن میشود بعد با کلیک روی یکی از خانه های روشن شده حرکت انجام میشود اگر هم روی خود مهره کلیک کنیم حرکت کنسل میشود و به حالت انتخاب مهره برمیگردیم.
-                 
-                
+studio with JAVA, the AI was a MIN-MAX algorithm with a search depth of 3.
+Tapping a piece highlights every square it can move to, tapping one of those
+squares makes the move, and tapping the selected piece again cancels the
+selection and returns to piece-picking mode.
               </p>
             </div>
           </div>
