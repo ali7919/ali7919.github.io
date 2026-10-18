@@ -1370,7 +1370,15 @@ section {
   background: transparent;
   border: 0;
   isolation: isolate;
-  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+  /* Lift lives on `translate` so the pointer tilt can track quickly while the
+     card still rises and settles slowly. */
+  translate: 0 0;
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-origin: center center;
+  transition:
+    translate 0.6s var(--ease),
+    transform 0.22s ease-out,
+    box-shadow 0.6s var(--ease);
 }
 
 /* Gradient outline that traces the card on hover */
@@ -1488,7 +1496,7 @@ section {
 
 .portfolio-featured-card:hover,
 .portfolio-featured-card:focus-visible {
-  transform: translateY(-11px);
+  translate: 0 -11px;
   box-shadow:
     0 8px 18px rgba(15, 23, 42, 0.08),
     0 44px 80px -32px rgba(15, 23, 42, 0.55),
@@ -2001,6 +2009,7 @@ section {
   .portfolio-paper-card:hover,
   .portfolio-paper-card:focus-visible {
     transform: none;
+    translate: none;
   }
   .portfolio-more-media::after {
     animation: none !important;

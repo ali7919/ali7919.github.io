@@ -224,6 +224,42 @@
   }
 
   /**
+   * Featured cards: 3D tilt that leans toward the pointer
+   */
+  const tiltCards = select('.portfolio-featured-card', true)
+  const tiltReduced = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+  if (tiltCards.length && !tiltReduced.matches &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const MAX_TILT = 5
+    let tiltFrame = 0
+
+    tiltCards.forEach((card) => {
+      const reset = () => {
+        card.style.setProperty('--tilt-x', '0deg')
+        card.style.setProperty('--tilt-y', '0deg')
+      }
+
+      card.addEventListener('pointermove', (event) => {
+        if (tiltFrame) return
+        tiltFrame = requestAnimationFrame(() => {
+          tiltFrame = 0
+          const rect = card.getBoundingClientRect()
+          if (!rect.width || !rect.height) return
+          /* -1 … 1 from the centre, then lean that edge toward the pointer */
+          const nx = ((event.clientX - rect.left) / rect.width - 0.5) * 2
+          const ny = ((event.clientY - rect.top) / rect.height - 0.5) * 2
+          card.style.setProperty('--tilt-y', (-nx * MAX_TILT).toFixed(2) + 'deg')
+          card.style.setProperty('--tilt-x', (ny * MAX_TILT).toFixed(2) + 'deg')
+        })
+      })
+
+      card.addEventListener('pointerleave', reset)
+      card.addEventListener('blur', reset)
+    })
+  }
+
+  /**
    * Initiate portfolio lightbox 
    */
   const portfolioLightbox = GLightbox({
