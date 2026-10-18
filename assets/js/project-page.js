@@ -33,6 +33,48 @@
     revealables.forEach(function (el) { el.classList.add('is-in'); });
   }
 
+  /* ---------------- Close the detail dialog ---------------- */
+  /* Detail pages live in an iframe inside the GLightbox dialog, so the
+     breadcrumb asks the parent window to close it. Opened on its own, the
+     link just follows its href. */
+  function closeDetail() {
+    var parentWin;
+
+    try {
+      parentWin = window.parent;
+    } catch (e) {
+      return false;
+    }
+
+    if (!parentWin || parentWin === window) return false;
+
+    try {
+      var lightbox = parentWin.portfolioDetailsLightbox;
+      if (lightbox && typeof lightbox.close === 'function') {
+        lightbox.close();
+        return true;
+      }
+    } catch (e) { /* cross-origin parent — fall through */ }
+
+    try {
+      var closeBtn = parentWin.document.querySelector('.gclose');
+      if (closeBtn) {
+        closeBtn.click();
+        return true;
+      }
+    } catch (e) { /* cross-origin parent */ }
+
+    return false;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-close-detail]'), function (el) {
+    el.addEventListener('click', function (event) {
+      if (closeDetail()) {
+        event.preventDefault();
+      }
+    });
+  });
+
   /* ---------------- Gallery viewer ---------------- */
   function pad(n) {
     return n < 10 ? '0' + n : String(n);

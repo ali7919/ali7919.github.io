@@ -217,6 +217,9 @@
     cssEffects: { zoomIn: '', zoomOut: '', fade: '' }
   });
 
+  /* Exposed so a detail page (loaded in the dialog's iframe) can close it. */
+  window.portfolioDetailsLightbox = portfolioDetailsLightbox;
+
   /**
    * Portfolio details slider
    */
