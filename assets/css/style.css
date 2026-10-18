@@ -1423,20 +1423,41 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.55s var(--ease);
+  transition: transform 0.55s var(--ease), filter 0.5s var(--ease);
 }
 
+/* Scrim that keeps the caption legible over the artwork */
 .portfolio-featured-card::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(15, 23, 42, 0.92) 0%,
-    rgba(15, 23, 42, 0.4) 42%,
-    rgba(15, 23, 42, 0.1) 100%
+    rgba(15, 23, 42, 0.94) 0%,
+    rgba(15, 23, 42, 0.45) 42%,
+    rgba(15, 23, 42, 0.12) 100%
   );
-  transition: background 0.4s var(--ease);
+  opacity: 0.94;
+  transition: opacity 0.45s var(--ease);
+}
+
+/* Single light sweep that fires on hover */
+.portfolio-featured-sheen {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  z-index: 1;
+  width: 34%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(16deg) translateX(-160%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .portfolio-featured-content {
@@ -1508,13 +1529,14 @@ section {
   box-shadow: 0 10px 24px rgba(59, 130, 246, 0.5);
 }
 
-.portfolio-featured-card:hover::after {
-  background: linear-gradient(
-    to top,
-    rgba(15, 23, 42, 0.95) 0%,
-    rgba(37, 99, 235, 0.28) 50%,
-    transparent 100%
-  );
+.portfolio-featured-card:hover::after,
+.portfolio-featured-card:focus-visible::after {
+  opacity: 1;
+}
+
+.portfolio-featured-card:hover .portfolio-featured-sheen,
+.portfolio-featured-card:focus-visible .portfolio-featured-sheen {
+  animation: card-sheen 1.15s ease-in-out forwards;
 }
 
 /* Research papers */
@@ -1551,7 +1573,11 @@ section {
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border);
-  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
+  transition:
+    transform 0.45s var(--ease),
+    box-shadow 0.45s var(--ease),
+    border-color 0.45s var(--ease),
+    background-color 0.45s var(--ease);
 }
 
 /* Gradient outline that traces the card on hover */
@@ -1573,17 +1599,31 @@ section {
 }
 
 .portfolio-paper-thumb {
+  position: relative;
   flex: 0 0 38%;
   max-width: 38%;
   background: var(--text);
   overflow: hidden;
 }
 
+/* Colour seam between artwork and copy, revealed on hover */
+.portfolio-paper-thumb::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary), var(--accent) 50%, #8b5cf6);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
 .portfolio-paper-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--ease);
+  transition: transform 0.6s var(--ease), filter 0.45s var(--ease);
 }
 
 .portfolio-paper-body {
@@ -1624,6 +1664,7 @@ section {
 .portfolio-paper-card:focus-visible {
   transform: translateY(-5px);
   border-color: transparent;
+  background-color: var(--surface);
   box-shadow:
     0 2px 4px rgba(15, 23, 42, 0.05),
     0 24px 44px -26px rgba(15, 23, 42, 0.38),
@@ -1635,9 +1676,15 @@ section {
   opacity: 1;
 }
 
+.portfolio-paper-card:hover .portfolio-paper-thumb::after,
+.portfolio-paper-card:focus-visible .portfolio-paper-thumb::after {
+  opacity: 1;
+}
+
 .portfolio-paper-card:hover .portfolio-paper-thumb img,
 .portfolio-paper-card:focus-visible .portfolio-paper-thumb img {
   transform: scale(1.06);
+  filter: brightness(1.04);
 }
 
 .portfolio-paper-card:hover .portfolio-paper-body h4,
@@ -1890,7 +1937,7 @@ section {
 
 .portfolio-more-item:hover .portfolio-more-media::after,
 .portfolio-more-item:focus-within .portfolio-more-media::after {
-  animation: card-sheen 0.9s var(--ease) forwards;
+  animation: card-sheen 1s ease-in-out forwards;
 }
 
 .portfolio-more-grid .portfolio-more-item .portfolio-wrap:hover img,
@@ -1973,6 +2020,9 @@ section {
     transform: none;
   }
   .portfolio-more-media::after {
+    animation: none !important;
+  }
+  .portfolio-featured-sheen {
     animation: none !important;
   }
   .portfolio-more-grid .portfolio-more-item .portfolio-wrap:hover img,
