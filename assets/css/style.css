@@ -2447,6 +2447,18 @@ section {
   background: #fff;
 }
 
+/* Phones: vendor CSS caps external slides at 75vh and centers them in the
+   taller dialog, which leaves blank white bars above and below the page. */
+@media (max-width: 768px) {
+  .glightbox-container .gslide-media.gslide-external {
+    flex: 1 1 auto;
+    align-self: stretch;
+    width: 100%;
+    max-height: none;
+    height: 100%;
+  }
+}
+
 /* Hide next/prev arrows */
 .glightbox-container .gnext,
 .glightbox-container .gprev {
