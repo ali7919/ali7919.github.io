@@ -4,11 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
   <title>Routino — Ali Mobarekati</title>
   <meta content="Routino, a habit tracker for Android published on CafeBazaar. Developed and designed by Ali Mobarekati."
     name="description">
   <meta content="Routino, habit tracker, Android, CafeBazaar, Ali Mobarekati" name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -22,17 +24,18 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css?version=19" rel="stylesheet">
 
   <style>
+    /* ============================================================
+       Routino — self-contained project page
+       (loaded inside the GLightbox detail dialog)
+       ============================================================ */
+
     @font-face {
       font-family: persianfont;
       src: url(assets/fonts/iransansreg.ttf);
@@ -40,384 +43,779 @@
     }
 
     html,
-    body,
-    #main {
-      background: transparent;
+    body {
+      background: #f4f7fb;
+      scroll-padding-top: 24px;
     }
 
+    /* style.css offsets #main for the fixed desktop nav — not needed here */
     @media (min-width: 992px) {
       #main {
         margin-left: 0;
       }
     }
 
-    /* ===== Compact detail page (fits GLightbox dialog) ===== */
-    .pd-page {
-      min-height: 100vh;
-      background: transparent;
-      padding: 32px;
-      overflow-y: auto;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
+    .rn {
+      /* brand */
+      --rn-green: #04d872;
+      --rn-green-deep: #03b862;
+      --rn-green-ink: #04914f;
+      --rn-green-soft: rgba(4, 216, 114, 0.1);
+      --rn-green-line: rgba(4, 216, 114, 0.24);
+      /* ink */
+      --rn-ink: #0b1220;
+      --rn-body: #55647c;
+      --rn-soft: #8b9ab1;
+      --rn-line: rgba(11, 18, 32, 0.08);
+      --rn-line-strong: rgba(11, 18, 32, 0.13);
+      --rn-card: #ffffff;
+      --rn-shadow: 0 22px 45px -32px rgba(11, 18, 32, 0.45);
+
+      font-family: var(--font-sans);
+      color: var(--rn-ink);
+      padding: 20px 0 34px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .pd-card {
-      width: 100%;
-      max-width: 1320px;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      overflow: hidden;
+    .rn-shell {
+      width: min(1140px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
-    /* Header: title + tag */
-    .pd-header {
-      padding: 24px 28px 0;
-    }
-    .pd-header-tag {
+    .rn-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, var(--primary), #6366f1);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 4px 12px;
+      gap: 7px;
+      padding: 5px 12px;
       border-radius: var(--radius-full);
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
-      margin-bottom: 10px;
-    }
-    .pd-header-title {
-      font-family: var(--font-display);
-      font-size: 1.85rem;
+      background: var(--rn-green-soft);
+      border: 1px solid var(--rn-green-line);
+      color: var(--rn-green-ink);
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0;
-      line-height: 1.15;
-    }
-    .pd-header-subtitle {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      margin: 6px 0 0;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      line-height: 1;
     }
 
-    /* Image + project description */
-    .pd-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(400px, 1fr);
-      align-items: start;
-      gap: 32px;
-      padding: 20px 28px 28px;
+    .rn-eyebrow i {
+      font-size: 0.85rem;
     }
 
-    /* Showcase image */
-    .pd-showcase {
-      margin: 0;
-      padding: 0;
-    }
-    .pd-showcase img {
-      width: 100%;
-      border-radius: var(--radius-md);
-      display: block;
-    }
-
-    /* Content */
-    .pd-content {
-      padding: 0;
-      min-width: 0;
+    /* ---------------- Top bar ---------------- */
+    .rn-topbar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0 4px 16px;
+      font-size: 0.82rem;
+      color: var(--rn-soft);
     }
 
-    .pd-section-label {
+    .rn-crumb {
       display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--rn-body);
+      font-weight: 600;
+      transition: color 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+
+    .rn-crumb:hover {
+      color: var(--rn-green-ink);
+      transform: translateX(-2px);
+    }
+
+    .rn-topbar .rn-sep {
+      opacity: 0.5;
+    }
+
+    .rn-topbar .rn-current {
+      color: var(--rn-ink);
+      font-weight: 600;
+    }
+
+    .rn-topbar-spacer {
+      flex: 1 1 auto;
+    }
+
+    .rn-topbar-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      background: #fff;
+      border: 1px solid var(--rn-line);
+      color: var(--rn-soft);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ---------------- Hero ---------------- */
+    .rn-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      padding: 38px 40px 34px;
+      color: #fff;
+      background:
+        radial-gradient(120% 130% at 90% 6%, rgba(4, 216, 114, 0.3), transparent 55%),
+        radial-gradient(90% 120% at 2% 100%, rgba(4, 216, 114, 0.16), transparent 58%),
+        linear-gradient(140deg, #0a1120 0%, #101a2e 58%, #0b1727 100%);
+      box-shadow: 0 34px 60px -34px rgba(11, 18, 32, 0.6);
+    }
+
+    .rn-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 46px 46px;
+      -webkit-mask-image: radial-gradient(115% 110% at 18% 0%, #000 18%, transparent 72%);
+      mask-image: radial-gradient(115% 110% at 18% 0%, #000 18%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .rn-hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+      align-items: center;
+      gap: 34px;
+    }
+
+    .rn-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: #fff;
+      margin: 0;
+    }
+
+    .rn-subtitle {
+      color: rgba(226, 232, 240, 0.78);
+      font-size: clamp(0.95rem, 1.6vw, 1.06rem);
+      line-height: 1.6;
+      margin: 12px 0 0;
+      max-width: 46ch;
+    }
+
+    .rn-chips {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 0;
+      padding: 0;
+    }
+
+    .rn-chips li {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(226, 232, 240, 0.9);
+      font-size: 0.78rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .rn-chips li i {
+      color: var(--rn-green);
+      font-size: 0.9rem;
+    }
+
+    .rn-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .rn-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 22px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1;
+      border: 1px solid transparent;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease),
+        color 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+
+    .rn-btn i {
+      font-size: 1rem;
+    }
+
+    .rn-btn-primary {
+      background: linear-gradient(135deg, #0ee886, var(--rn-green-deep));
+      color: #04241a;
+      box-shadow: 0 14px 32px -12px rgba(4, 216, 114, 0.75);
+    }
+
+    .rn-btn-primary:hover {
+      color: #04241a;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 38px -14px rgba(4, 216, 114, 0.85);
+    }
+
+    .rn-btn-ghost {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: #e2e8f0;
+    }
+
+    .rn-btn-ghost:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* App icon */
+    .rn-icon-card {
+      justify-self: center;
+      width: clamp(150px, 20vw, 206px);
+      aspect-ratio: 1 / 1;
+      padding: 9px;
+      border-radius: 42px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 28px 60px -22px rgba(4, 216, 114, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.5s var(--ease);
+    }
+
+    .rn-icon-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 34px;
+      object-fit: cover;
+    }
+
+    .rn-icon-card:hover {
+      transform: translateY(-4px) rotate(-1.5deg);
+    }
+
+    /* ---------------- Sections ---------------- */
+    /* style.css gives every <section> 90px padding — reset it here */
+    .rn-section {
+      padding: 0;
+      margin: 30px 0 0;
+    }
+
+    .rn-panel {
+      background: var(--rn-card);
+      border: 1px solid var(--rn-line);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--rn-shadow);
+    }
+
+    .rn-panel-label {
+      margin-bottom: 20px;
+    }
+
+    /* Showcase frame */
+    .rn-frame {
+      margin: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--rn-line-strong);
+      box-shadow: 0 30px 55px -34px rgba(11, 18, 32, 0.5);
+    }
+
+    .rn-frame-bar {
+      display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
+      padding: 11px 16px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--rn-line);
+    }
+
+    .rn-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #e2e8f0;
+    }
+
+    .rn-dot:first-child {
+      background: #fca5a5;
+    }
+
+    .rn-dot:nth-child(2) {
+      background: #fcd34d;
+    }
+
+    .rn-dot:nth-child(3) {
+      background: #86efac;
+    }
+
+    .rn-frame-title {
+      margin-left: 8px;
+      color: var(--rn-soft);
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-    .pd-section-label::before {
-      content: "";
-      width: 16px;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 2px;
     }
 
-    /* Meta grid */
-    .pd-meta {
+    .rn-frame img {
+      display: block;
+      width: 100%;
+    }
+
+    /* ---------------- Detail: image left / description right ---------------- */
+    .rn-detail {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px 20px;
-      margin: 0 0 22px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--border);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: stretch;
     }
-    .pd-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .pd-meta-item strong {
-      font-size: 0.66rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-soft);
-    }
-    .pd-meta-item span,
-    .pd-meta-item a {
-      color: var(--text);
-      font-weight: 500;
-      font-size: 0.88rem;
-    }
-    .pd-meta-item a {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: color 0.25s var(--ease);
-    }
-    .pd-meta-item a:hover { color: var(--primary); }
 
-    /* Description */
-    .pd-desc p {
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin: 0 0 12px;
-      font-size: 0.92rem;
+    .rn-detail-media {
+      min-width: 0;
     }
-    .pd-desc p.fa {
-      font-family: persianfont, "Inter", sans-serif;
-      font-size: 0.92rem;
-      line-height: 1.85;
+
+    /* keep the shot in view while the longer description scrolls */
+    .rn-detail-media .rn-frame {
+      position: sticky;
+      top: 18px;
+    }
+
+    .rn-detail-body {
+      min-width: 0;
+    }
+
+    .rn-story p {
+      color: var(--rn-body);
+      font-size: 0.96rem;
+      line-height: 1.78;
+      margin: 0 0 14px;
+    }
+
+    .rn-story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .rn-story strong {
+      color: var(--rn-ink);
+      font-weight: 600;
+    }
+
+    .rn-fa {
+      margin: 22px 0 0;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: linear-gradient(160deg, rgba(4, 216, 114, 0.08), rgba(4, 216, 114, 0.02));
+      border: 1px solid var(--rn-green-line);
       direction: rtl;
       text-align: right;
     }
 
-    /* Highlights */
-    .pd-highlights {
+    .rn-fa p {
+      font-family: persianfont, "Inter", sans-serif;
+      color: #3d556e;
+      font-size: 0.92rem;
+      line-height: 2;
+      margin: 0 0 10px;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .rn-fa p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Meta grid */
+    .rn-meta {
+      list-style: none;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 12px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 16px 20px;
+      margin: 0 0 22px;
+      padding: 0 0 22px;
+      border-bottom: 1px solid var(--rn-line);
     }
-    .pd-highlight {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-    }
-    .pd-highlight:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
-    }
-    .pd-highlight-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-    .pd-highlight-value {
-      font-family: var(--font-display);
+
+    .rn-meta-label {
+      display: block;
+      color: var(--rn-soft);
+      font-size: 0.64rem;
       font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--text);
-      letter-spacing: -0.02em;
-    }
-    .pd-highlight-label {
-      font-size: 0.75rem;
-      color: var(--text-soft);
-      margin-top: 1px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
-    /* Actions */
-    .pd-actions {
+    .rn-meta-value {
+      display: block;
+      color: var(--rn-ink);
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-top: 3px;
+    }
+
+    .rn-meta-value a {
+      color: var(--rn-green-ink);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .rn-meta-value a:hover {
+      color: var(--rn-green-deep);
+    }
+
+    /* ---------------- Action bar ---------------- */
+    .rn-cta {
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+      border-radius: 26px;
+      padding: 26px 30px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-top: 24px;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: #fff;
+      background:
+        radial-gradient(120% 160% at 100% 0%, rgba(4, 216, 114, 0.32), transparent 55%),
+        linear-gradient(135deg, #0a1120, #13203a);
+      box-shadow: 0 30px 55px -34px rgba(11, 18, 32, 0.6);
     }
-    .pd-cta {
+
+    .rn-cta-brand {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, var(--primary), #6366f1);
-      color: #fff;
+      gap: 12px;
+      color: rgba(226, 232, 240, 0.85);
+      font-size: 0.92rem;
       font-weight: 600;
-      font-size: 0.9rem;
-      border-radius: var(--radius-full);
-      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
-      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      letter-spacing: -0.01em;
     }
-    .pd-cta:hover {
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+
+    .rn-cta-brand span.rn-cta-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: rgba(4, 216, 114, 0.16);
+      border: 1px solid rgba(4, 216, 114, 0.3);
+      color: #5ff3ac;
+      font-size: 1rem;
     }
-    .pd-back {
-      display: inline-flex;
+
+    .rn-cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------------- Footer ---------------- */
+    .rn-footer {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      transition: color 0.25s var(--ease);
-    }
-    .pd-back:hover { color: var(--primary); }
-
-    @media (max-width: 1100px) {
-      .pd-layout {
-        display: block;
-        padding: 0;
-      }
-      .pd-showcase {
-        margin: 20px 0 0;
-        padding: 0 28px;
-      }
-      .pd-content {
-        padding: 20px 28px 28px;
-      }
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 22px 6px 0;
+      color: var(--rn-soft);
+      font-size: 0.8rem;
     }
 
-    @media (max-width: 600px) {
-      .pd-page { padding: 16px; }
-      .pd-header { padding: 20px 20px 0; }
-      .pd-showcase { padding: 0 20px; }
-      .pd-content { padding: 16px 20px 22px; }
-      .pd-header-title { font-size: 1.5rem; }
+    .rn-footer a {
+      color: var(--rn-body);
+      font-weight: 600;
+    }
+
+    .rn-footer a:hover {
+      color: var(--rn-green-ink);
+    }
+
+    /* ---------------- Reveal on scroll ---------------- */
+    .js .rn-reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+      transition-delay: var(--rn-delay, 0s);
+      will-change: opacity, transform;
+    }
+
+    .js .rn-reveal.is-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .js .rn-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .rn-icon-card,
+      .rn-btn {
+        transition: none !important;
+      }
+    }
+
+    /* ---------------- Responsive ---------------- */
+    @media (max-width: 1024px) {
+      .rn-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .rn-icon-card {
+        justify-self: start;
+        width: clamp(120px, 26vw, 168px);
+      }
+
+      .rn-detail {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .rn-detail-media .rn-frame {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .rn {
+        padding: 14px 0 26px;
+      }
+
+      .rn-shell {
+        width: calc(100% - 24px);
+      }
+
+      .rn-hero {
+        padding: 28px 22px 26px;
+        border-radius: 22px;
+      }
+
+      .rn-panel,
+      .rn-cta {
+        padding: 24px 20px;
+        border-radius: 20px;
+      }
+
+      .rn-icon-card {
+        width: 132px;
+        border-radius: 34px;
+      }
+
+      .rn-icon-card img {
+        border-radius: 27px;
+      }
+
+      .rn-actions .rn-btn,
+      .rn-cta-actions .rn-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .rn-fa {
+        padding: 20px 18px;
+      }
     }
   </style>
+
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
-    <div class="pd-page">
-      <div class="pd-card">
+    <div class="rn">
+      <div class="rn-shell">
 
-        <!-- Header -->
-        <div class="pd-header">
-          <span class="pd-header-tag"><i class="bi bi-stars"></i> Featured on CafeBazaar</span>
-          <h1 class="pd-header-title">Routino</h1>
-          <p class="pd-header-subtitle">A habit tracker for Android — built from idea to launch</p>
-        </div>
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">Routino</span>
+          <span class="rn-topbar-spacer"></span>
+          <span class="rn-topbar-meta"><i class="bi bi-phone"></i> Android</span>
+        </nav>
 
-        <!-- Showcase image + project description -->
-        <div class="pd-layout">
-          <div class="pd-showcase">
-            <img src="assets/img/details/routino.jpg" alt="Routino">
-          </div>
+        <!-- ============ Hero ============ -->
+        <header class="rn-hero">
+          <div class="rn-hero-grid">
+            <div class="rn-hero-copy">
+              <h1 class="rn-title">Routino</h1>
+              <p class="rn-subtitle">A habit tracker for Android</p>
 
-          <!-- Content -->
-          <div class="pd-content">
-          <div class="pd-section-label">Overview</div>
+              <ul class="rn-chips">
+                <li><i class="bi bi-phone"></i> Android</li>
+                <li><i class="bi bi-code-slash"></i> Java · Kotlin</li>
+              </ul>
 
-          <div class="pd-meta">
-            <div class="pd-meta-item">
-              <strong>Category</strong>
-              <span>Android Studio — Java / Kotlin</span>
+              <div class="rn-actions">
+                <a class="rn-btn rn-btn-primary" href="https://cafebazaar.ir/app/com.ace.routino" target="_blank"
+                  rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View on CafeBazaar
+                </a>
+                <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+                  <i class="bi bi-arrow-left"></i> Back to portfolio
+                </a>
+              </div>
             </div>
-            <div class="pd-meta-item">
-              <strong>Start Date</strong>
-              <span>January 2020 (Bahman 98)</span>
-            </div>
-            <div class="pd-meta-item">
-              <strong>Role</strong>
-              <span>Developer & Designer</span>
-            </div>
-            <div class="pd-meta-item">
-              <strong>Platforms</strong>
-              <span>CafeBazaar · CharKhoneh</span>
-            </div>
-            <div class="pd-meta-item">
-              <strong>Project URL</strong>
-              <a href="https://cafebazaar.ir/app/com.ace.routino" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-box-arrow-up-right"></i> CafeBazaar
-              </a>
+
+            <div class="rn-icon-card">
+              <img src="assets/img/portfolio/routino.jpg" alt="Routino">
             </div>
           </div>
+        </header>
 
-          <div class="pd-desc">
-            <p>
-              Routino is a habit tracker which a friend and I worked on together.
-              Aside from the database layer, I developed and designed the rest of the app end-to-end —
-              from the UI and user experience to the underlying logic and publishing flow.
-            </p>
-            <p>
-              Routino was published on <strong>CafeBazaar</strong>, the largest Android app market in Iran,
-              and was selected by CafeBazaar's editors to be featured on the home page.
-              It reached <strong>5,000 active installs</strong> and was also promoted for a month on the
-              <strong>CharKhoneh</strong> market's home page.
-            </p>
-            <p class="fa">
-              روتینو یک habit tracker برای اندروید است که می‌توانید آن را از کافه بازار و مارکت چارخونه دانلود کنید.<br>
-              روتینو در کافه بازار به رکورد ۵۰۰۰ نصب فعال رسید و در بخش‌های تازه‌های برگزیده و بهترین‌های جدید
-              از نگاه کافه بازار (صفحه اول) حضور یافت و در مارکت چارخونه هم به مدت یک ماه در صفحه اول به صورت رایگان پروموت شد.<br>
-              به جز بخش دیتابیس (ذخیره اطلاعات)، تمامی برنامه توسط بنده توسعه یافت.
-            </p>
+        <!-- ============ Detail: screenshot left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <figure class="rn-frame">
+              <div class="rn-frame-bar" aria-hidden="true">
+                <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                <span class="rn-frame-title">Routino</span>
+              </div>
+              <img src="assets/img/details/routino.jpg" alt="Routino app screens">
+            </figure>
           </div>
 
-          <div class="pd-highlights">
-            <div class="pd-highlight">
-              <div class="pd-highlight-icon"><i class="bi bi-trophy"></i></div>
-              <div class="pd-highlight-value">5,000+</div>
-              <div class="pd-highlight-label">Active installs</div>
-            </div>
-            <div class="pd-highlight">
-              <div class="pd-highlight-icon"><i class="bi bi-star-fill"></i></div>
-              <div class="pd-highlight-value">Home page</div>
-              <div class="pd-highlight-label">CafeBazaar featured</div>
-            </div>
-            <div class="pd-highlight">
-              <div class="pd-highlight-icon"><i class="bi bi-rocket-takeoff"></i></div>
-              <div class="pd-highlight-value">1 month</div>
-              <div class="pd-highlight-label">CharKhoneh promo</div>
-            </div>
-            <div class="pd-highlight">
-              <div class="pd-highlight-icon"><i class="bi bi-people"></i></div>
-              <div class="pd-highlight-value">2</div>
-              <div class="pd-highlight-label">Team members</div>
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
+
+              <ul class="rn-meta">
+                <li>
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">Android Studio — Java / Kotlin</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">January 2020 (Bahman 98)</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Project URL</span>
+                  <span class="rn-meta-value">
+                    <a href="https://cafebazaar.ir/app/com.ace.routino" target="_blank" rel="noopener noreferrer">
+                      CafeBazaar <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </span>
+                </li>
+              </ul>
+
+              <div class="rn-story">
+                <p>
+                  Routino is a habit tracker which a friend and I worked on together.
+                  Aside from the database layer, I developed and designed the rest of the app end-to-end —
+                  from the UI and user experience to the underlying logic and publishing flow.
+                </p>
+                <p>
+                  Routino was published on <strong>CafeBazaar</strong>, the largest Android app market in Iran,
+                  and was selected by CafeBazaar's editors to be featured on the home page.
+                  It reached <strong>5,000 active installs</strong> and was also promoted for a month on the
+                  <strong>CharKhoneh</strong> market's home page.
+                </p>
+
+                <blockquote class="rn-fa">
+                  <p>
+                    روتینو یک habit tracker برای اندروید است که می‌توانید آن را از کافه بازار و مارکت چارخونه دانلود کنید.
+                  </p>
+                  <p>
+                    روتینو در کافه بازار به رکورد ۵۰۰۰ نصب فعال رسید و در بخش‌های تازه‌های برگزیده و بهترین‌های جدید
+                    از نگاه کافه بازار (صفحه اول) حضور یافت و در مارکت چارخونه هم به مدت یک ماه در صفحه اول به صورت رایگان پروموت شد.
+                  </p>
+                  <p>
+                    به جز بخش دیتابیس (ذخیره اطلاعات)، تمامی برنامه توسط بنده توسعه یافت.
+                  </p>
+                </blockquote>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="pd-actions">
-            <a href="https://cafebazaar.ir/app/com.ace.routino" target="_blank" rel="noopener noreferrer" class="pd-cta">
-              <i class="bi bi-download"></i> View on CafeBazaar
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-bag-check"></i></span>
+            Routino on CafeBazaar
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-primary" href="https://cafebazaar.ir/app/com.ace.routino" target="_blank"
+              rel="noopener noreferrer">
+              <i class="bi bi-box-arrow-up-right"></i> View on CafeBazaar
             </a>
-            <a href="index.html#portfolio" class="pd-back">
-              <i class="bi bi-arrow-left"></i> Back to portfolio
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
             </a>
           </div>
-          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
     </div>
   </main>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
   <script>
-    AOS.init({ duration: 600, once: true, offset: 40 });
+    (function () {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* Reveal on scroll */
+      var revealables = document.querySelectorAll('.rn-reveal');
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.04 });
+
+        revealables.forEach(function (el) { io.observe(el); });
+
+        /* Failsafe: if the observer never reports anything (e.g. inside some
+           embedded frames), show everything instead of leaving it hidden. */
+        window.setTimeout(function () {
+          if (!document.querySelector('.rn-reveal.is-in')) {
+            revealables.forEach(function (el) { el.classList.add('is-in'); });
+          }
+        }, 2500);
+      } else {
+        revealables.forEach(function (el) { el.classList.add('is-in'); });
+      }
+    })();
   </script>
 
 </body>
