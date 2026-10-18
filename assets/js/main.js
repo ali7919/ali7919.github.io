@@ -199,6 +199,30 @@
   });
 
   /**
+   * Portfolio cards: light wash that follows the cursor over the artwork
+   */
+  const spotlightCards = select('.portfolio-more-item .portfolio-wrap', true)
+  if (spotlightCards.length && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let spotFrame = 0
+
+    spotlightCards.forEach((card) => {
+      const media = card.querySelector('.portfolio-more-media')
+      if (!media) return
+
+      card.addEventListener('pointermove', (event) => {
+        if (spotFrame) return
+        spotFrame = requestAnimationFrame(() => {
+          spotFrame = 0
+          const rect = media.getBoundingClientRect()
+          if (!rect.width || !rect.height) return
+          card.style.setProperty('--spot-x', ((event.clientX - rect.left) / rect.width) * 100 + '%')
+          card.style.setProperty('--spot-y', ((event.clientY - rect.top) / rect.height) * 100 + '%')
+        })
+      })
+    })
+  }
+
+  /**
    * Initiate portfolio lightbox 
    */
   const portfolioLightbox = GLightbox({
