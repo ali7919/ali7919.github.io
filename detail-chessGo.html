@@ -4,11 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
-  <title>Chess Go - Ali Mobarekati</title>
-
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Chess Go — Ali Mobarekati</title>
+  <meta content="Chess Go is a chess-like strategy game mixed with the endless runner genre, built solo in Unity and published on CafeBazaar. A project by Ali Mobarekati."
+    name="description">
+  <meta content="Chess Go, Unity, strategy game, CafeBazaar, Blender, minimax, Ali Mobarekati" name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -22,87 +24,147 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=19" rel="stylesheet">
+  <link href="assets/css/project-page.css?version=1" rel="stylesheet">
 
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
+    <div class="rn">
+      <div class="rn-shell">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">Chess Go</span>
+          <span class="rn-topbar-spacer"></span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-controller"></i> Unity</li>
+            <li><i class="bi bi-bag-check"></i> Published</li>
+          </ul>
+        </nav>
 
-        <div class="row gy-4">
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/chessGo.jpg" alt="Chess Go">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">Chess Go</h1>
+            <p class="rn-subtitle">A chess-like strategy runner, published on CafeBazaar</p>
+          </div>
+        </header>
 
-          <div class="col-lg-8" style="display: flex; flex-direction: column; align-items: center;">
-            
-
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6893152922021289984?collapsed=1" height="542" style="width: 100%; max-width: 504px;" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-
+        <!-- ============ Detail: media left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <figure class="rn-frame">
+              <div class="rn-frame-bar" aria-hidden="true">
+                <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                <span class="rn-frame-title">Chess Go — trailer</span>
+              </div>
+              <div class="rn-embed">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6893152922021289984?collapsed=1"
+                  height="542" title="Embedded post about Chess Go" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </figure>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-            <h3 >Chess Go</h3>
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
 
-              <li><strong>Category</strong>: Unity</li>
-              <li><strong> Start Date</strong>: September 2021</li>
-              
-              <li><strong>Project URL</strong>: <a href="https://cafebazaar.ir/app/com.Codersan.ChessGo" target="_blank" rel="noopener noreferrer">CafeBazaar</a></li>
+              <ul class="rn-meta">
+                <li>
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">Unity</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">September 2021</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Build time</span>
+                  <span class="rn-meta-value">4 months, solo</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Project URL</span>
+                  <span class="rn-meta-value">
+                    <a href="https://cafebazaar.ir/app/com.Codersan.ChessGo" target="_blank"
+                      rel="noopener noreferrer">
+                      CafeBazaar <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </span>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <p>Chess Go is a chess-like strategy game combined with the endless runner
-                genre and some other twists.
-                It is my first published game which is made with Unity. I made the game
-                all by myself in the span of 4 months without using any premade assets
-                (except for sounds) and made everything from scratch, I used Blender for
-                3d modeling, UV editing, and texturing. 2d sprites were made using
-                Aseprite Or Figma. I used Audacity for editing sound assets and made its
-                teaser entirely in Blender, Posters and UI prototypes were made using
-                Figma and I managed it all in Trello. One of the most challenging parts of
-                it was the AI which I programmed it based on a Min-MAx approach and I
-                also implemented Unity’s new Analytics SDK.
-                Chess go was published on CafeBazaar the biggest app market in Iran and
-                was chosen by CafeBazaar to be listed on the home page.
-                I also implemented CafeBazaar's in-app purchase and used Tapsell for ads.</p>
+
+              <div class="rn-story">
+                <p>
+                  Chess Go is a chess-like strategy game combined with the endless runner
+                  genre and some other twists. It is my first published game, made with Unity.
+                </p>
+                <p>
+                  I made the game all by myself in the span of 4 months, without using any
+                  premade assets except for sounds — everything else was built from scratch.
+                  <strong>Blender</strong> for 3D modelling, UV editing and texturing;
+                  <strong>Aseprite</strong> or <strong>Figma</strong> for the 2D sprites;
+                  <strong>Audacity</strong> for sound editing. The teaser was made entirely in
+                  Blender, posters and UI prototypes in Figma, and I managed it all in Trello.
+                </p>
+                <p>
+                  One of the most challenging parts was the AI, which I programmed based on a
+                  <strong>minimax</strong> approach. I also implemented Unity's new Analytics
+                  SDK, CafeBazaar's in-app purchase and used Tapsell for ads.
+                </p>
+                <p>
+                  Chess Go was published on CafeBazaar, the biggest app market in Iran, and was
+                  chosen by CafeBazaar to be listed on the home page.
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-bag-check"></i></span>
+            Chess Go on CafeBazaar
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-primary" href="https://cafebazaar.ir/app/com.Codersan.ChessGo" target="_blank"
+              rel="noopener noreferrer">
+              <i class="bi bi-box-arrow-up-right"></i> View on CafeBazaar
+            </a>
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
+            </a>
+          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project-page.js"></script>
 
 </body>
 

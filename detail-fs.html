@@ -4,12 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
-  <title>Scanner - Ali Mobarekati</title>
-
- 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Scanner — Ali Mobarekati</title>
+  <meta content="Scanner is a Windows client built with WPF that receives data from a medical scanner, processes it, displays the result and keeps patient records. UI design and implementation by Ali Mobarekati."
+    name="description">
+  <meta content="Scanner, WPF, Windows client, medical scanner, UI design, Ali Mobarekati" name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -23,93 +24,134 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=19" rel="stylesheet">
+  <link href="assets/css/project-page.css?version=1" rel="stylesheet">
 
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
+    <div class="rn">
+      <div class="rn-shell">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">Scanner</span>
+          <span class="rn-topbar-spacer"></span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-window"></i> WPF</li>
+            <li><i class="bi bi-pc-display"></i> Windows</li>
+          </ul>
+        </nav>
 
-        <div class="row gy-4">
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/fs.png" alt="Scanner">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">Scanner</h1>
+            <p class="rn-subtitle">A Windows client for a medical scanner</p>
+          </div>
+        </header>
 
-          <div class="col-lg-8">
-            
-            <div class="portfolio-details-slider swiper">
-              <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide"><img src="assets/img/details/fs1.png" alt=""></div>
-                <div class="swiper-slide"><img src="assets/img/details/fs2.png" alt=""></div>
-                <div class="swiper-slide"><img src="assets/img/details/fs3.png" alt=""></div>
-
+        <!-- ============ Detail: screens left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <figure class="rn-frame rn-viewer" data-viewer>
+              <div class="rn-frame-bar" aria-hidden="true">
+                <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                <span class="rn-frame-title">Scanner — WPF</span>
+                <span class="rn-counter">01 / 03</span>
               </div>
-              <div class="swiper-pagination"></div>
-            </div>
+              <div class="rn-stage">
+                <img src="assets/img/details/fs1.png" alt="Scanner screen 1">
+              </div>
+              <div class="rn-thumbs">
+                <button class="rn-thumb is-active" type="button" aria-label="Screen 1"><img src="assets/img/details/fs1.png" alt="Scanner screen 1"></button>
+                <button class="rn-thumb" type="button" aria-label="Screen 2"><img src="assets/img/details/fs2.png" alt="Scanner screen 2"></button>
+                <button class="rn-thumb" type="button" aria-label="Screen 3"><img src="assets/img/details/fs3.png" alt="Scanner screen 3"></button>
+              </div>
+            </figure>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-            <h3 >Scanner (windows client)</h3>
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
 
-              <li><strong>Category</strong>: WPF applications</li>
-              <li><strong> Start Date</strong>: August 2020</li>
+              <ul class="rn-meta">
+                <li>
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">WPF application</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">August 2020</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Role</span>
+                  <span class="rn-meta-value">UI design, implementation, project manager</span>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <p>
-                Scanner is a windows client application made with WPF that receives data
-                from a special scanner, processes it, and shows the information. it also
-                creates and stores user accounts for patients, I designed and implemented
-                the UI.
-              </p>
-              <p>
-                It was developed by team Ace using WPF. After the app is launched and the
-                scanner is connected, the images coming from the scanner go into the
-                processing core, the final output is displayed, and a patient record is
-                built from the extracted data.
-              </p>
-              <p>
-                My role in this project: UI design and implementation, project manager.
-              </p>
+
+              <div class="rn-story">
+                <p>
+                  Scanner is a Windows client application made with WPF that receives data
+                  from a special scanner, processes it and shows the information. It also
+                  creates and stores user accounts for patients — I designed and implemented
+                  the UI.
+                </p>
+                <p>
+                  It was developed by <strong>team Ace</strong> using WPF. Once the app is
+                  launched and the scanner is connected, the images coming from the scanner go
+                  into the processing core, the final output is displayed, and a patient
+                  record is built from the extracted data.
+                </p>
+                <p>
+                  My role in this project: <strong>UI design and implementation</strong>, and
+                  project manager.
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-window"></i></span>
+            Scanner — WPF · Windows
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
+            </a>
+          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project-page.js"></script>
 
 </body>
 

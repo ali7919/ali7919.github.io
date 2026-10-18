@@ -4,12 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
-  <title>Drone - Machine Learning - Ali Mobarekati</title>
-
- 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Drone Machine Learning — Ali Mobarekati</title>
+  <meta content="A reinforcement learning model trained with Unity ML-Agents that flies a four-motor drone towards a goal in a physically accurate simulation."
+    name="description">
+  <meta content="reinforcement learning, Unity ML-Agents, drone, PPO, machine learning, Ali Mobarekati" name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -23,82 +24,155 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=19" rel="stylesheet">
+  <link href="assets/css/project-page.css?version=1" rel="stylesheet">
 
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
+    <div class="rn">
+      <div class="rn-shell">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">Drone Machine Learning</span>
+          <span class="rn-topbar-spacer"></span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-cpu"></i> Reinforcement learning</li>
+            <li><i class="bi bi-controller"></i> Unity</li>
+          </ul>
+        </nav>
 
-      <div class="container">
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/DroneML.jpg" alt="Drone Machine Learning">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">Drone Machine Learning</h1>
+            <p class="rn-subtitle">Reinforcement learning flies a four-motor drone to a goal</p>
+          </div>
+        </header>
 
-        <div class="row gy-4">
-
-          <div class="col-lg-8">
-
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6964532829007273984?compact=1" height="399" style="width: 100%; max-width: 710px;" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+        <!-- ============ Detail: media left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <figure class="rn-frame">
+              <div class="rn-frame-bar" aria-hidden="true">
+                <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                <span class="rn-frame-title">Drone ML — training</span>
+              </div>
+              <div class="rn-embed">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6964532829007273984?compact=1"
+                  height="399" title="Embedded post about the drone ML project" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </figure>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-            <h3 >Drone - Machine Learning</h3>
-              <li><strong>Category</strong>: Unity ML</li>
-              <li><strong> Start Date</strong>: August 2022</li>
-              
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
+
+              <ul class="rn-meta">
+                <li>
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">Unity ML-Agents</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">August 2022</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Network</span>
+                  <span class="rn-meta-value">2 × 256 hidden</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Batch · buffer</span>
+                  <span class="rn-meta-value">1024 · 32768</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Training</span>
+                  <span class="rn-meta-value">~10 hours</span>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <p>
-                
-                A reinforcement learning model that I trained locally using the unity’s Machine learning framework which controls a flying drone with 4 motors towards a goal in a physically accurate simulation, the model takes 15 inputs which consist of 5, three-dimensional vectors, the position of the drone, velocity of the drone, angular velocity of the drone, a vector pointing up based on the rotation of the drone (so that the model is aware of the drone’s rotation) and finally the current goal’s position.
-                <br>The output of the model is 4 continuous numbers and each of them represents a motor’s force.
-                <br>Training took about 10 hours and the rewards and punishments are as follows:
-                <br>A big punishment is given when the drone hits the ground and then the corresponding learning session will reset. On each simulation update a small reward is given, the closer the drone is to the goal, the bigger the reward and at last, a big reward is given to the model whenever it hits the goal. I also tweaked the rewards each hour for better training, for example, in the beginning, each simulation update reward was much bigger so that the model just learns to not hit the ground, and later this reward was changed so that the drone starts reaching for the goal.
-                <br>The number of hidden layers in the neural network is 2 and the number of units in the hidden layers of the neural network is 256 with a batch size of 1024 and buffer size of 32768.
-                
-                
-                
-                
-              </p>
+
+              <div class="rn-story">
+                <p>
+                  A reinforcement learning model that I trained locally using Unity's Machine
+                  Learning framework. It controls a flying drone with 4 motors towards a goal in
+                  a physically accurate simulation.
+                </p>
+                <p>
+                  The model takes <strong>15 inputs</strong> — five three-dimensional vectors:
+                  the position, velocity and angular velocity of the drone, a vector pointing up
+                  based on the drone's rotation (so the model is aware of its orientation), and
+                  finally the current goal position. The output is
+                  <strong>4 continuous numbers</strong>, each representing a motor's force.
+                </p>
+                <p>Training took about 10 hours. The rewards and punishments:</p>
+                <ul class="rn-list">
+                  <li>
+                    A big punishment when the drone hits the ground — the learning session then
+                    resets.
+                  </li>
+                  <li>
+                    A small reward on each simulation update; the closer the drone is to the
+                    goal, the bigger the reward.
+                  </li>
+                  <li>A big reward whenever it reaches the goal.</li>
+                  <li>
+                    Rewards were tweaked each hour: early on the per-update reward was much
+                    bigger so the model would simply learn not to hit the ground, and later it
+                    was changed so the drone starts reaching for the goal.
+                  </li>
+                </ul>
+                <p>
+                  The neural network has <strong>2 hidden layers</strong> of
+                  <strong>256 units</strong> each, with a batch size of 1024 and a buffer size
+                  of 32768.
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-cpu"></i></span>
+            Drone ML — Unity · ML-Agents
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
+            </a>
+          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project-page.js"></script>
 
 </body>
 

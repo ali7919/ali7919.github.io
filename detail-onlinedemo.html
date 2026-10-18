@@ -4,11 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
-  <title>Online Demo - Ali Mobarekati</title>
-
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Online Demo — Ali Mobarekati</title>
+  <meta content="A third-person multiplayer prototype built in Unity on top of Photon PUN2, with networked prize spawning and collection. Open source by Ali Mobarekati."
+    name="description">
+  <meta content="Unity, PUN2, Photon, multiplayer, online demo, Ali Mobarekati" name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -22,87 +24,131 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=19" rel="stylesheet">
+  <link href="assets/css/project-page.css?version=1" rel="stylesheet">
 
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
+    <div class="rn">
+      <div class="rn-shell">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">Online Demo</span>
+          <span class="rn-topbar-spacer"></span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-controller"></i> Unity</li>
+            <li><i class="bi bi-wifi"></i> Multiplayer</li>
+          </ul>
+        </nav>
 
-        <div class="row gy-4">
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/onlinedemo.jpg" alt="Online Demo">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">Online Demo</h1>
+            <p class="rn-subtitle">A third-person multiplayer prototype on Photon PUN2</p>
+          </div>
+        </header>
 
-          <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper">
-
+        <!-- ============ Detail: demo left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <figure class="rn-frame">
+              <div class="rn-frame-bar" aria-hidden="true">
+                <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                <span class="rn-frame-title">Online Demo — networked session</span>
+              </div>
               <video
                 src="https://user-images.githubusercontent.com/45494924/152676963-c36d6b9f-7f49-416f-88f7-c1494b79dab0.mp4"
-                class="img-fluid" alt="" autoplay></video>
-            </div>
-
+                poster="assets/img/portfolio/onlinedemo.jpg" autoplay muted loop playsinline controls></video>
+            </figure>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-                <h3>Online Demo</h3>
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
 
-                  <li><strong>Category</strong>: Unity</li>
-                  <li><strong> Start Date</strong>: January 2022</li>
-
-                  <li><strong>Project URL</strong>: <a href="https://github.com/ali7919/UnityOnlineDemo" target="_blank"
-                      rel="noopener noreferrer">Github</a></li>
+              <ul class="rn-meta">
+                <li>
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">Unity — PUN2</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">January 2022</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Repository</span>
+                  <span class="rn-meta-value">
+                    <a href="https://github.com/ali7919/UnityOnlineDemo" target="_blank" rel="noopener noreferrer">
+                      GitHub <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </span>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <p>
-                I used the third person template provided by unity and turned it into an online game using PUN2 (photon
-                #unity networking).
-                The way it works is simple, someone becomes the host, and others can join, I also coded a prize
-                spawning-collecting system that is operated by the host. The prizes (yellow
-                balls) spawn and sync online, and I added a dance animation to the animation
-                system as well. The whole project is open source and you can find it on my
-                GitHub.
-              </p>
+
+              <div class="rn-story">
+                <p>
+                  I took the third-person template provided by Unity and turned it into an
+                  online game using <strong>PUN2</strong> (Photon Unity Networking).
+                </p>
+                <p>
+                  The way it works is simple: someone becomes the host and others can join. I
+                  also coded a prize spawning-and-collecting system that is operated by the
+                  host — the prizes (yellow balls) spawn and sync online — and added a dance
+                  animation to the animation system as well.
+                </p>
+                <p>The whole project is open source and you can find it on my GitHub.</p>
+              </div>
             </div>
           </div>
+        </section>
 
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-github"></i></span>
+            Online Demo on GitHub
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-primary" href="https://github.com/ali7919/UnityOnlineDemo" target="_blank"
+              rel="noopener noreferrer">
+              <i class="bi bi-github"></i> View source
+            </a>
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
+            </a>
+          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project-page.js"></script>
 
 </body>
 

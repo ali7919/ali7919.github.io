@@ -4,12 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
-  <title>AR Demo - Ali Mobarekati</title>
-
- 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>AR Demo — Ali Mobarekati</title>
+  <meta content="Two Unity AR demos: a boss fight with health and missiles, and an AR credit card that sticks to the real card using stencil-buffer shaders."
+    name="description">
+  <meta content="AR, augmented reality, Unity, ARCore, shaders, stencil buffer, Ali Mobarekati" name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -23,81 +24,139 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=19" rel="stylesheet">
+  <link href="assets/css/project-page.css?version=1" rel="stylesheet">
 
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
+    <div class="rn">
+      <div class="rn-shell">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">AR Demo</span>
+          <span class="rn-topbar-spacer"></span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-controller"></i> Unity</li>
+            <li><i class="bi bi-badge-ar"></i> AR</li>
+          </ul>
+        </nav>
 
-      <div class="container">
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/Ardemo.jpg" alt="AR Demo">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">AR Demo</h1>
+            <p class="rn-subtitle">Two augmented-reality experiments in Unity</p>
+          </div>
+        </header>
 
-        <div class="row gy-4">
+        <!-- ============ Detail: media left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <div class="rn-media-stack">
+              <figure class="rn-frame">
+                <div class="rn-frame-bar" aria-hidden="true">
+                  <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                  <span class="rn-frame-title">AR Demo — boss fight</span>
+                </div>
+                <video src="assets/videos/ardemo.mp4" poster="assets/img/portfolio/Ardemo.jpg" autoplay muted loop
+                  playsinline controls></video>
+              </figure>
 
-          <div class="col-lg-8" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-
-            
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6923586160816484352?compact=1" height="399" style="width: 100%; max-width: 504px;" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-
-            <video src="./assets/videos/ardemo.mp4" height="399" style="width: 100%; max-width: 504px;" class="img-fluid" alt="" autoplay></video>
-
+              <figure class="rn-frame">
+                <div class="rn-frame-bar" aria-hidden="true">
+                  <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                  <span class="rn-frame-title">Project post</span>
+                </div>
+                <div class="rn-embed">
+                  <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6923586160816484352?compact=1"
+                    height="399" title="Embedded post about the AR demos" loading="lazy" allowfullscreen></iframe>
+                </div>
+              </figure>
+            </div>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-            <h3>AR Demo</h3>
-              <li><strong>Category</strong>: Unity</li>
-              <li><strong> Start Date</strong>: April 2022</li>
-              
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
+
+              <ul class="rn-meta">
+                <li>
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">Unity — AR</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">April 2022</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Demos</span>
+                  <span class="rn-meta-value">2 prototypes</span>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <p>
-                <b>2 demo projects around unity ar :</b><br><br>
-                <b>-</b> first one is a simple boss fight . It starts with a sequence , the player opens a chest full of gems then the boss appears with one attack type (shooting missiles) and the player can also shoot back at it.
-                the player , boss and its missiles have certain amount of health which decreases by being shot at.<br><br>
-                <b>-</b> second one is an ar credit card , the card spawns on the scanned image on the actual credit card and sticks to it. the visuals are achieved using shaders (stencil buffer).                   
-                
-              </p>
+
+              <div class="rn-story">
+                <p>Two demo projects around Unity AR.</p>
+
+                <ul class="rn-list">
+                  <li>
+                    <strong>Boss fight</strong> — a simple encounter that starts with a sequence:
+                    the player opens a chest full of gems, then the boss appears with one attack
+                    type (shooting missiles) and the player can shoot back at it. The player, the
+                    boss and its missiles all have health that decreases when they're hit.
+                  </li>
+                  <li>
+                    <strong>AR credit card</strong> — the card spawns on the scanned image of the
+                    actual credit card and sticks to it. The visuals are achieved using shaders
+                    and the stencil buffer.
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+        </section>
 
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-badge-ar"></i></span>
+            AR Demo — Unity · AR
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
+            </a>
+          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project-page.js"></script>
 
 </body>
 

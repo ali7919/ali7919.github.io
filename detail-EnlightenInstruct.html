@@ -4,12 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
-  <title>Fine-tuning LLMs - Ali Mobarekati</title>
-
- 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Fine-tuning LLMs — Ali Mobarekati</title>
+  <meta content="A complete guide to fine-tuning Mistral 7B in Google Colab with QLoRA. The resulting model beats GPT-4 on a domain-specific benchmark. Code on GitHub, weights on Hugging Face."
+    name="description">
+  <meta content="fine-tuning, Mistral 7B, QLoRA, LoRA, Google Colab, LLM, Enlighten Instruct, Ali Mobarekati"
+    name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -23,85 +25,153 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=19" rel="stylesheet">
+  <link href="assets/css/project-page.css?version=1" rel="stylesheet">
 
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
+    <div class="rn">
+      <div class="rn-shell">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">Fine-tuning LLMs</span>
+          <span class="rn-topbar-spacer"></span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-cpu"></i> LLM</li>
+            <li><i class="bi bi-journal-richtext"></i> Article</li>
+          </ul>
+        </nav>
 
-        <div class="row gy-4">
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/FinetuningLLMs.jpg" alt="Fine-tuning LLMs">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">Fine-tuning LLMs</h1>
+            <p class="rn-subtitle">QLoRA fine-tuning of Mistral 7B in Google Colab</p>
+          </div>
+        </header>
 
-          <div class="col-lg-8">
-            
-
-            
-            <img src="assets/img/portfolio/FinetuningLLMs.jpg" class="img-fluid" alt="">
+        <!-- ============ Detail: cover left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <figure class="rn-frame">
+              <div class="rn-frame-bar" aria-hidden="true">
+                <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                <span class="rn-frame-title">Enlighten Instruct</span>
+              </div>
+              <img src="assets/img/portfolio/FinetuningLLMs.jpg" alt="Fine-tuning Mistral 7B with QLoRA">
+            </figure>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-            <h3 >Fine-tuning LLMs</h3>
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
 
-              <li><strong>Category</strong>: AI - LLM</li>
-              <li><strong> Start Date</strong>: February 2024</li>
+              <ul class="rn-meta">
                 <li>
-                  <strong>Article URL</strong>: 
-                  <a href="https://medium.com/@codersama/fine-tuning-mistral-7b-in-google-colab-with-qlora-complete-guide-60e12d437cca" target="_blank" rel="noopener noreferrer">Medium</a>
-                  - <a href="https://github.com/ali7919/Enlighten-Instruct" target="_blank" rel="noopener noreferrer">Github</a>
-                  - <a href="https://huggingface.co/codersan/Enlighten_Instruct/tree/main" target="_blank" rel="noopener noreferrer">Huggingface</a>
-                  
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">AI — LLM</span>
                 </li>
-
-              
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">February 2024</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Article</span>
+                  <span class="rn-meta-value">
+                    <a href="https://medium.com/@codersama/fine-tuning-mistral-7b-in-google-colab-with-qlora-complete-guide-60e12d437cca"
+                      target="_blank" rel="noopener noreferrer">
+                      Medium <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Code</span>
+                  <span class="rn-meta-value">
+                    <a href="https://github.com/ali7919/Enlighten-Instruct" target="_blank"
+                      rel="noopener noreferrer">
+                      GitHub <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Model</span>
+                  <span class="rn-meta-value">
+                    <a href="https://huggingface.co/codersan/Enlighten_Instruct/tree/main" target="_blank"
+                      rel="noopener noreferrer">
+                      Hugging Face <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </span>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <p>
-                This is my first article on Medium - Fine-tuning Mistral 7b in Google Colab with QLoRA (complete guide). The resulting fine-tuned model with synthetic data will outperform Openai’s GPT-4 on a domain-specific benchmark.
-                <br> This project is also on my Github and the models are on Huggingface.
 
-              </p>
+              <div class="rn-story">
+                <p>
+                  This is my first article on Medium — <strong>Fine-tuning Mistral 7B in Google
+                    Colab with QLoRA</strong>, a complete guide.
+                </p>
+                <p>
+                  The resulting fine-tuned model, trained on synthetic data, outperforms
+                  OpenAI's GPT-4 on a domain-specific benchmark.
+                </p>
+                <p>
+                  The project is also on my GitHub and the models are on Hugging Face.
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-journal-richtext"></i></span>
+            Fine-tuning LLMs — Medium article
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-primary"
+              href="https://medium.com/@codersama/fine-tuning-mistral-7b-in-google-colab-with-qlora-complete-guide-60e12d437cca"
+              target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-box-arrow-up-right"></i> Read on Medium
+            </a>
+            <a class="rn-btn rn-btn-ghost" href="https://github.com/ali7919/Enlighten-Instruct" target="_blank"
+              rel="noopener noreferrer">
+              <i class="bi bi-github"></i> View source
+            </a>
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
+            </a>
+          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project-page.js"></script>
 
 </body>
 

@@ -4,12 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="color-scheme" content="light">
 
-  <title>Talk With LLM - Ali Mobarekati</title>
-
- 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Talk With LLM — Ali Mobarekati</title>
+  <meta content="On-device speech recognition with Whisper and Sentis plus LLM inference with LLMUnity and Gemma 2, running entirely inside Unity."
+    name="description">
+  <meta content="Talk With LLM, Unity, Whisper, Sentis, LLMUnity, Gemma 2, on-device AI, Ali Mobarekati"
+    name="keywords">
+  <meta content="Ali Mobarekati" name="author">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -23,82 +25,128 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?version=10" rel="stylesheet">
+  <link href="assets/css/style.css?version=19" rel="stylesheet">
+  <link href="assets/css/project-page.css?version=1" rel="stylesheet">
 
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
 
   <main id="main">
+    <div class="rn">
+      <div class="rn-shell">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+        <!-- ============ Top bar ============ -->
+        <nav class="rn-topbar" aria-label="Breadcrumb">
+          <a class="rn-crumb" href="index.html#portfolio">
+            <i class="bi bi-arrow-left"></i> Portfolio
+          </a>
+          <span class="rn-sep" aria-hidden="true">/</span>
+          <span class="rn-current">Talk With LLM</span>
+          <span class="rn-topbar-spacer"></span>
+          <ul class="rn-chips">
+            <li><i class="bi bi-cpu"></i> On-device AI</li>
+            <li><i class="bi bi-controller"></i> Unity</li>
+          </ul>
+        </nav>
 
-        <div class="row gy-4">
+        <!-- ============ Page header ============ -->
+        <header class="rn-head">
+          <div class="rn-head-icon">
+            <img src="assets/img/portfolio/TalkWithLLM_s.jpg" alt="Talk With LLM">
+          </div>
+          <div class="rn-head-copy">
+            <h1 class="rn-title">Talk With LLM</h1>
+            <p class="rn-subtitle">On-device speech recognition and LLM inference in Unity</p>
+          </div>
+        </header>
 
-          <div class="col-lg-8">
-            
-
-            
-            <img src="assets/videos/TalkWithLLM.gif" class="img-fluid" alt="">
+        <!-- ============ Detail: demo left, description right ============ -->
+        <section class="rn-section rn-detail">
+          <div class="rn-detail-media">
+            <figure class="rn-frame">
+              <div class="rn-frame-bar" aria-hidden="true">
+                <span class="rn-dot"></span><span class="rn-dot"></span><span class="rn-dot"></span>
+                <span class="rn-frame-title">Talk With LLM — live demo</span>
+              </div>
+              <img src="assets/videos/TalkWithLLM.gif" alt="Talking to an on-device LLM inside Unity">
+            </figure>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <ul>
-            <h3 >Talk With LLM in Unity</h3>
+          <div class="rn-detail-body rn-reveal" style="--rn-delay:.1s">
+            <div class="rn-panel">
+              <span class="rn-eyebrow rn-panel-label"><i class="bi bi-journal-text"></i> Overview</span>
 
-              <li><strong>Category</strong>: AI - LLM - Unity</li>
-              <li><strong> Start Date</strong>: August 2024</li>
+              <ul class="rn-meta">
                 <li>
-                  <strong>Project Link</strong>: 
-                  - <a href="https://github.com/ali7919/Talk-With-LLM-In-Unity" target="_blank" rel="noopener noreferrer">Github</a>
-                  
+                  <span class="rn-meta-label">Category</span>
+                  <span class="rn-meta-value">AI — LLM — Unity</span>
                 </li>
-
-              
+                <li>
+                  <span class="rn-meta-label">Start date</span>
+                  <span class="rn-meta-value">August 2024</span>
+                </li>
+                <li>
+                  <span class="rn-meta-label">Repository</span>
+                  <span class="rn-meta-value">
+                    <a href="https://github.com/ali7919/Talk-With-LLM-In-Unity" target="_blank"
+                      rel="noopener noreferrer">
+                      GitHub <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </span>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <p>
-                This project combines speech recognition using the Whisper model and Sentis with LLM inference using LLMUnity and the Google Gemma2 2b model, all running on-device in Unity.<br> It's a great starting template for implementing on-device AI for any Unity project, please check the project link for more information.
-              
-              </p>
+
+              <div class="rn-story">
+                <p>
+                  This project combines speech recognition using the <strong>Whisper</strong>
+                  model and Sentis with LLM inference using LLMUnity and the
+                  <strong>Google Gemma 2 2B</strong> model — all running on-device in Unity.
+                </p>
+                <p>
+                  It's a great starting template for implementing on-device AI in any Unity
+                  project. Please check the project link for more information.
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
+        <!-- ============ Action bar ============ -->
+        <section class="rn-cta rn-reveal" aria-label="Project links">
+          <span class="rn-cta-brand">
+            <span class="rn-cta-mark"><i class="bi bi-github"></i></span>
+            Talk With LLM on GitHub
+          </span>
+          <div class="rn-cta-actions">
+            <a class="rn-btn rn-btn-primary" href="https://github.com/ali7919/Talk-With-LLM-In-Unity" target="_blank"
+              rel="noopener noreferrer">
+              <i class="bi bi-github"></i> View source
+            </a>
+            <a class="rn-btn rn-btn-ghost" href="index.html#portfolio">
+              <i class="bi bi-grid"></i> Back to portfolio
+            </a>
+          </div>
+        </section>
+
+        <!-- ============ Footer ============ -->
+        <div class="rn-footer">
+          <span>Ali Mobarekati</span>
+          <a href="index.html#portfolio"><i class="bi bi-arrow-left"></i> All projects</a>
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </div>
+  </main>
 
-  </main><!-- End #main -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project-page.js"></script>
 
 </body>
 
