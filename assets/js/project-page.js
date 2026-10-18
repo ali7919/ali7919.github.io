@@ -36,7 +36,12 @@
   /* ---------------- Close the detail dialog ---------------- */
   /* Detail pages live in an iframe inside the GLightbox dialog, so the
      breadcrumb asks the parent window to close it. Opened on its own, the
-     link just follows its href. */
+     link just follows its href.
+
+     Two paths, because the dialog can be served from http(s) or from
+     file:// (where every file is its own opaque origin and touching
+     window.parent throws): close the lightbox directly when the parent is
+     reachable, otherwise post it a message and let main.js do it. */
   function closeDetail() {
     var parentWin;
 
@@ -54,15 +59,12 @@
         lightbox.close();
         return true;
       }
-    } catch (e) { /* cross-origin parent — fall through */ }
+    } catch (e) { /* cross-origin parent — use postMessage below */ }
 
     try {
-      var closeBtn = parentWin.document.querySelector('.gclose');
-      if (closeBtn) {
-        closeBtn.click();
-        return true;
-      }
-    } catch (e) { /* cross-origin parent */ }
+      parentWin.postMessage({ type: 'close-detail' }, '*');
+      return true;
+    } catch (e) { /* nothing else we can do */ }
 
     return false;
   }

@@ -220,6 +220,14 @@
   /* Exposed so a detail page (loaded in the dialog's iframe) can close it. */
   window.portfolioDetailsLightbox = portfolioDetailsLightbox;
 
+  /* Detail pages opened from file:// can't touch this window (opaque
+     origins), so they ask for the close over postMessage instead. */
+  window.addEventListener('message', function (event) {
+    if (event.data && event.data.type === 'close-detail') {
+      portfolioDetailsLightbox.close();
+    }
+  });
+
   /**
    * Portfolio details slider
    */
