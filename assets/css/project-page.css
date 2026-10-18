@@ -225,9 +225,15 @@ body {
 }
 
 /* ---------------- Sections ---------------- */
-/* style.css gives every <section> 90px padding — reset it here */
-.rn-section {
+/* style.css gives every <section> 90px padding and overflow: hidden.
+   The hidden overflow clips the card shadows at the section edge. */
+.rn-section,
+.rn-cta {
   padding: 0;
+  overflow: visible;
+}
+
+.rn-section {
   margin: 30px 0 0;
 }
 
