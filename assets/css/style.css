@@ -1802,9 +1802,9 @@ section {
   inset: 0;
   z-index: 2;
   background: radial-gradient(
-    300px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0) 62%
+    320px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0) 68%
   );
   opacity: 0;
   pointer-events: none;
