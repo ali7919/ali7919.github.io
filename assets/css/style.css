@@ -2425,13 +2425,17 @@ section {
   to { opacity: 1; }
 }
 
-/* Rounded dialog wrapper — fast clean pop-in */
+/* Rounded dialog wrapper — fast clean pop-in.
+   The white panel belongs to project pages (iframe slides). Image slides keep
+   the dimmed backdrop, so artwork opens as a plain image instead of a page. */
 .glightbox-container .ginner-container {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: #fff;
   box-shadow: none;
   animation: pd-pop-in 0.45s var(--ease) both;
+}
+.glightbox-container .ginner-container:has(.gslide-media.gslide-external) {
+  background: #fff;
 }
 @keyframes pd-pop-in {
   from { opacity: 0; transform: translateY(14px) scale(0.97); }
