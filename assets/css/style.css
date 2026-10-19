@@ -1359,14 +1359,11 @@ section {
   margin-bottom: 56px;
 }
 
-.portfolio-featured-hero {
-  margin-bottom: 12px;
-}
-
 .portfolio-featured-card {
   display: block;
   position: relative;
   overflow: hidden;
+  width: 100%;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   aspect-ratio: 16 / 10;
@@ -1402,32 +1399,170 @@ section {
   transition: opacity 0.45s var(--ease);
 }
 
+/* Enlighten spotlight — the single most important block on the page */
+.portfolio-spotlight {
+  position: relative;
+  margin-bottom: 34px;
+}
+
+/* Ambient glow that lifts the hero off the page */
+.portfolio-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -6% -5% -10%;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: calc(var(--radius-lg) + 40px);
+  background:
+    radial-gradient(58% 70% at 16% 84%, rgba(59, 130, 246, 0.22), transparent 70%),
+    radial-gradient(52% 62% at 86% 14%, rgba(6, 182, 212, 0.18), transparent 70%);
+  filter: blur(34px);
+}
+
+.portfolio-spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
 .portfolio-featured-card--hero {
-  aspect-ratio: 21 / 9;
-  border-radius: calc(var(--radius-lg) + 4px);
-  box-shadow: var(--shadow-glow);
+  aspect-ratio: 2 / 1;
+  min-height: clamp(460px, 40vw, 600px);
+  border-radius: calc(var(--radius-lg) + 5px);
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow:
+    0 24px 60px -34px rgba(15, 23, 42, 0.38),
+    0 14px 40px -24px rgba(59, 130, 246, 0.3);
+}
+
+/* 2:1 crops a slice off the frame; anchor to the bottom so the in-game HUD
+   at the top of the still drops out cleanly instead of being sliced in half. */
+.portfolio-featured-card--hero img {
+  object-position: center bottom;
+}
+
+/* Keep a trace of the gradient frame at rest so the hero reads as selected */
+.portfolio-featured-card--hero::before {
+  padding: 2px;
+  opacity: 0.25;
 }
 
 .portfolio-featured-card--hero .portfolio-featured-content {
-  padding: 40px 44px;
+  max-width: 720px;
+  padding: 36px 40px 34px;
 }
 
 .portfolio-featured-card--hero .portfolio-featured-content h3 {
-  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  margin-top: 0;
+  font-size: clamp(2rem, 4.4vw, 3.15rem);
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  padding-bottom: 8px;
+  background-size: 0% 3px;
 }
 
 .portfolio-featured-card--hero .portfolio-featured-content p {
-  font-size: 1.05rem;
-  max-width: 520px;
+  font-size: 0.98rem;
+  max-width: 500px;
 }
 
-.portfolio-featured-card--hero .portfolio-featured-tag {
+.spotlight-lede {
+  margin-top: 12px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  line-height: 1.55 !important;
+}
+
+.spotlight-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-top: 20px;
+}
+
+.spotlight-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spotlight-meta li {
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.spotlight-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 17px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.34);
+  transition:
+    gap 0.4s var(--ease),
+    box-shadow 0.4s var(--ease),
+    translate 0.4s var(--ease);
+}
+
+.portfolio-featured-card--hero:hover .spotlight-cta,
+.portfolio-featured-card--hero:focus-visible .spotlight-cta {
+  gap: 12px;
+  translate: 0 -2px;
+  box-shadow: 0 13px 28px rgba(59, 130, 246, 0.46);
+}
+
+/* Label pill that opens the spotlight caption */
+.spotlight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 6px 13px;
+  font-size: 10.5px;
+}
+
+.spotlight-badge i {
   font-size: 12px;
-  padding: 6px 14px;
+}
+
+/* Small label that demotes the four cards below the hero */
+.portfolio-featured-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 16px;
+  color: var(--text-soft);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.portfolio-featured-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 
 .portfolio-featured-secondary {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .portfolio-featured-card img {
@@ -1448,6 +1583,18 @@ section {
     rgba(15, 23, 42, 0.5) 38%,
     rgba(15, 23, 42, 0.14) 100%
   );
+}
+
+/* Deeper scrim for the hero: its caption has to hold over a dark game still.
+   Declared after the shared scrim above so it wins at equal specificity. */
+.portfolio-featured-card--hero::after {
+  background:
+    linear-gradient(to top,
+      rgba(6, 10, 22, 0.92) 0%,
+      rgba(6, 10, 22, 0.82) 28%,
+      rgba(6, 10, 22, 0.4) 56%,
+      rgba(6, 10, 22, 0.04) 100%),
+    linear-gradient(105deg, rgba(6, 10, 22, 0.5) 0%, rgba(6, 10, 22, 0.1) 50%, rgba(6, 10, 22, 0) 70%);
 }
 
 .portfolio-featured-content {
@@ -1966,14 +2113,51 @@ section {
 }
 
 @media (max-width: 767px) {
-  .portfolio-featured-card--hero {
-    aspect-ratio: 16 / 10;
+  .portfolio-spotlight {
+    margin-bottom: 26px;
   }
-  .portfolio-featured-card--hero .portfolio-featured-content h3 {
-    font-size: 1.5rem;
+  .portfolio-spotlight::before {
+    inset: -2% -2% -5%;
+    filter: blur(22px);
+  }
+  .portfolio-featured-card--hero {
+    aspect-ratio: 1 / 1;
+    min-height: 480px;
+    border-radius: calc(var(--radius-lg) + 2px);
   }
   .portfolio-featured-card--hero .portfolio-featured-content {
-    padding: 24px;
+    padding: 22px 20px 20px;
+    max-width: none;
+  }
+  .portfolio-featured-card--hero .portfolio-featured-content h3 {
+    font-size: 1.95rem;
+  }
+  .portfolio-featured-card--hero .portfolio-featured-content p {
+    font-size: 0.95rem;
+    max-width: none;
+  }
+  .spotlight-lede {
+    margin-top: 8px !important;
+  }
+  .spotlight-foot {
+    margin-top: 16px;
+    gap: 10px;
+  }
+  .spotlight-meta {
+    gap: 6px;
+  }
+  .spotlight-meta li {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  .spotlight-cta {
+    padding: 9px 15px;
+    font-size: 0.82rem;
+  }
+  .spotlight-badge {
+    margin-bottom: 10px;
+    padding: 5px 11px;
+    font-size: 10px;
   }
   .portfolio-featured-content h3 {
     font-size: 1.25rem;
