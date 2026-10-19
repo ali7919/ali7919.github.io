@@ -852,6 +852,9 @@ section {
   font-size: 1.05rem;
   line-height: 1.45;
 }
+.about-highlights .about-highlight--wide {
+  grid-column: 1 / -1;
+}
 
 @media (max-width: 576px) {
   .about-highlights {
