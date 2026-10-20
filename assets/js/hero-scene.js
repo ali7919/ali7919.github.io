@@ -166,28 +166,43 @@
          grid dissolves, and then it gathers itself back into line. */
       p += aDrift * uChaos;
 
-      /* Folds. Two wave trains cross the weave at different angles and
-         speeds, the way a sheet of cloth moves when air passes under it. */
+      /* Folds. Three wave trains cross the weave at different angles, speeds
+         and wavelengths — one broad swell carrying the sheet, one counter-wave
+         that breaks up its rhythm, and a short ripple riding on top. */
       vec2 dirA = normalize(vec2(0.72, 0.70));
       vec2 dirB = normalize(vec2(-0.45, 0.89));
-      float phaseA = dot(p.xy, dirA) * 6.2 - uTime * 1.05;
-      float phaseB = dot(p.xy, dirB) * 4.0 - uTime * 0.68 + 2.3;
-      float height = sin(phaseA) * 0.78 + sin(phaseB) * 0.22;
+      vec2 dirC = normalize(vec2(0.94, -0.34));
+
+      /* Domain warp: the folds are measured from a slowly displaced copy of
+         the point, so they bend, bunch up and merge instead of running as
+         straight printed stripes. */
+      float warpX = sin(dot(p.xy, vec2(1.13, 0.87)) * 1.7 + uTime * 0.29);
+      float warpY = sin(dot(p.xy, vec2(-0.74, 1.21)) * 2.1 - uTime * 0.24 + 1.1);
+      vec2 w = p.xy + vec2(warpX, warpY) * 0.13;
+
+      float phaseA = dot(w, dirA) * 6.2 - uTime * 1.05;
+      float phaseB = dot(w, dirB) * 3.6 - uTime * 0.62 + 2.3;
+      float phaseC = dot(w, dirC) * 10.8 - uTime * 1.5 + 4.1;
+
+      float height = sin(phaseA) * 0.54 + sin(phaseB) * 0.29 + sin(phaseC) * 0.17;
 
       /* Lift the sheet toward the viewer on the crests... */
-      p.z += height * 0.24;
+      p.z += height * 0.26;
 
-      /* ...and let the weave slide along each wave, so the grid gathers on the
-         rising faces and stretches over the peaks. */
-      p.xy += dirA * cos(phaseA) * 0.032;
-      p.xy += dirB * cos(phaseB) * 0.012;
+      /* ...and let the weave slide along the two long waves, so the grid
+         gathers on the rising faces and stretches over the peaks. The short
+         ripple is left out here — displacing by it would only roughen the
+         lattice without adding shape. */
+      p.xy += dirA * cos(phaseA) * 0.03;
+      p.xy += dirB * cos(phaseB) * 0.013;
 
-      /* A narrow band of light rides each crest. Because the wave is mostly one
-         direction, the bands stay as ribbons sweeping across the sheet rather
-         than dissolving into patches. */
-      float ribbon = pow(0.5 + 0.5 * sin(phaseA), 4.0);
-      float ribbonB = pow(0.5 + 0.5 * sin(phaseB), 9.0) * 0.5;
-      float crest = min(ribbon + ribbonB, 1.0);
+      /* Bands of light ride the crests. The main band's width breathes, and the
+         short ripple fades in and out, so no two passes look the same. */
+      float bandWidth = mix(4.5, 6.5, 0.5 + 0.5 * sin(uTime * 0.19 + 0.7));
+      float ribbon = pow(0.5 + 0.5 * sin(phaseA), bandWidth);
+      float ribbonB = pow(0.5 + 0.5 * sin(phaseB), 8.0) * (0.38 + 0.16 * sin(uTime * 0.23));
+      float ribbonC = pow(0.5 + 0.5 * sin(phaseC), 10.0) * (0.22 + 0.16 * sin(uTime * 0.31 + 2.0));
+      float crest = min(ribbon + ribbonB + ribbonC, 1.0);
 
       /* A click sends a ring across the cloth: it lifts the weave and lights
          it, without pushing the dots out of line. */
@@ -227,8 +242,8 @@
 
       /* Relief: the far side of every fold sits deeper and dimmer, the near
          side comes forward, so the sheet has real thickness. */
-      float relief = 0.5 + 0.5 * sin(phaseA);
-      vAlpha = (grow * (0.3 + crest * 0.55 + reach * 0.28 + ripple * 0.55) * mix(0.86, 1.06, relief)) * uAlphaMul * veil * uDim;
+      float relief = 0.5 + 0.5 * height;
+      vAlpha = (grow * (0.18 + crest * 0.9 + reach * 0.28 + ripple * 0.55) * mix(0.86, 1.06, relief)) * uAlphaMul * veil * uDim;
       vColor = mix(vec3(0.34, 0.72, 1.0), vec3(0.96, 1.0, 1.0), min(crest * 0.8 + ripple + reach * 0.4, 1.0));
 
       gl_PointSize = clamp(aMeta.x * uSizeMul * (1.0 + ripple * 0.3) * uDpr * uFocal / depth, 1.0, 40.0 * uDpr);
