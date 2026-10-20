@@ -11,8 +11,9 @@
  * no lines anywhere.
  *
  * Every so often the weave lets go — the dots drift off their places, the grid
- * dissolves, and then it gathers itself back into line. Clicking does nothing;
- * the field moves on its own.
+ * dissolves, and then it gathers itself back into line. Clicking the hero
+ * drops the cycle at whichever state you want, so you can switch it by hand
+ * and it carries on breathing from there. Links and buttons are left alone.
  *
  * The copy stays the loudest thing on screen: the field is dimmed where the
  * text lives, and dimmed again on narrow screens, where the copy is centred.
@@ -410,19 +411,34 @@
     ripple.start = (performance.now() - startedAt) / 1000
   }
 
-  /* The weave breathes: long stretches of clean lattice, then it lets go into
-     a loose drift and gathers itself back. The cycle is offset so the opening
-     assembly finishes before the first loosening starts. */
+  /* The weave breathes on its own: long stretches of clean lattice, then it
+     lets go into a loose drift and gathers itself back. The cycle is offset so
+     the opening assembly finishes before the first loosening starts. */
   const CHAOS_CYCLE = 23
   const CHAOS_FIRST = 8
+
+  /* Where in the cycle a click drops the weave: just past the start of the
+     drift, or well inside the calm stretch so it stays put for a while. */
+  const PHASE_MESSY = 3.6
+  const PHASE_CALM = 12.5
+
   const smoothstep = (edge0, edge1, x) => {
     const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)))
     return t * t * (3 - 2 * t)
   }
+
+  /* The cycle can be nudged forward by a click, which is what lets a click
+     switch state without stopping the breathing. */
+  let cycleOffset = 0
   const chaosAt = (time) => {
-    const phase = (((time - CHAOS_FIRST) % CHAOS_CYCLE) + CHAOS_CYCLE) % CHAOS_CYCLE
+    const phase = (((time - CHAOS_FIRST - cycleOffset) % CHAOS_CYCLE) + CHAOS_CYCLE) % CHAOS_CYCLE
     return smoothstep(0, 3.2, phase) * (1 - smoothstep(6.4, 10.6, phase))
   }
+
+  /* The value actually drawn eases toward the cycle, so a click lands as a
+     glide rather than a jump and the automatic drift stays calm. */
+  let chaos = 0
+  let lastFrameAt = 0
 
   const resize = () => {
     const rect = canvas.getBoundingClientRect()
@@ -495,7 +511,13 @@
     gl.uniform2f(uniforms.uParallax, parallax.x, parallax.y)
     gl.uniform2f(uniforms.uTilt, tilt.x, tilt.y)
     gl.uniform1f(uniforms.uProgress, progress)
-    gl.uniform1f(uniforms.uChaos, chaosAt(time))
+    /* Ease toward the cycle. Frame-rate independent, so a slow machine does
+       not stretch the dissolve. */
+    const target = chaosAt(time)
+    const dt = lastFrameAt ? Math.min(0.1, time - lastFrameAt) : 1 / 60
+    lastFrameAt = time
+    chaos += (target - chaos) * (1 - Math.exp(-dt / 0.42))
+    gl.uniform1f(uniforms.uChaos, chaos)
     gl.uniform1f(uniforms.uRippleRadius, rippleRadius)
     gl.uniform2f(uniforms.uRippleOrigin, ripple.originX, ripple.originY)
     gl.uniform1f(uniforms.uTime, time)
@@ -563,6 +585,23 @@
     pointerTarget.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1)
     lastPointerAt = performance.now()
   }, { passive: true })
+
+  /* Clicking the hero switches the weave between the clean lattice and the
+     loose drift. It works by dropping the breathing cycle at the matching
+     point, so the switch is immediate and the weave carries on by itself
+     afterwards. Links and buttons keep working normally. */
+  hero.addEventListener('pointerdown', (event) => {
+    if (event.target instanceof Element && event.target.closest('a, button')) return
+
+    const now = (performance.now() - startedAt) / 1000
+    const goingMessy = chaos <= 0.5
+    cycleOffset = now - CHAOS_FIRST - (goingMessy ? PHASE_MESSY : PHASE_CALM)
+
+    if (prefersReducedMotion) {
+      chaos = chaosAt(now)
+      drawFrame(4.5)
+    }
+  })
 
   let resizeTimer = 0
   window.addEventListener('resize', () => {
