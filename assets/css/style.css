@@ -382,6 +382,22 @@ img {
   z-index: 1;
 }
 
+/* A soft pool of shade behind the copy, sitting above the dot field so the
+   weave fades out where the words are. It has no visible edge: the gradient
+   reaches zero well before the box does. */
+#hero .container::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -14% -10% -14% -12%;
+  background: radial-gradient(ellipse 58% 56% at 30% 52%,
+      rgba(6, 10, 22, 0.9) 0%,
+      rgba(6, 10, 22, 0.72) 38%,
+      rgba(6, 10, 22, 0.34) 62%,
+      rgba(6, 10, 22, 0) 78%);
+  pointer-events: none;
+}
+
 #hero .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -443,13 +459,14 @@ img {
 }
 
 #hero .hero-description {
-  color: #94a3b8;
+  color: #cbd5e1;
   margin: 14px 0 0;
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);
   font-family: var(--font-sans);
   font-weight: 400;
   line-height: 1.6;
   max-width: 640px;
+  text-shadow: 0 1px 16px rgba(3, 7, 18, 0.6);
 }
 
 #hero .hero-buttons {
@@ -582,6 +599,14 @@ img {
   }
   #hero .hero-buttons {
     justify-content: center;
+  }
+  #hero .container::before {
+    inset: -12% -6% -12% -6%;
+    background: radial-gradient(ellipse 68% 58% at 50% 50%,
+        rgba(6, 10, 22, 0.9) 0%,
+        rgba(6, 10, 22, 0.72) 38%,
+        rgba(6, 10, 22, 0.34) 62%,
+        rgba(6, 10, 22, 0) 78%);
   }
   #hero .hero-description {
     margin-left: auto;
