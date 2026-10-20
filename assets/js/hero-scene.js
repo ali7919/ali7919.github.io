@@ -414,13 +414,13 @@
   /* The weave breathes on its own: long stretches of clean lattice, then it
      lets go into a loose drift and gathers itself back. The cycle is offset so
      the opening assembly finishes before the first loosening starts. */
-  const CHAOS_CYCLE = 23
-  const CHAOS_FIRST = 8
+  const CHAOS_CYCLE = 14
+  const CHAOS_FIRST = 3.2
 
   /* Where in the cycle a click drops the weave: just past the start of the
      drift, or well inside the calm stretch so it stays put for a while. */
-  const PHASE_MESSY = 3.6
-  const PHASE_CALM = 12.5
+  const PHASE_MESSY = 2.7
+  const PHASE_CALM = 8.6
 
   const smoothstep = (edge0, edge1, x) => {
     const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)))
@@ -432,7 +432,7 @@
   let cycleOffset = 0
   const chaosAt = (time) => {
     const phase = (((time - CHAOS_FIRST - cycleOffset) % CHAOS_CYCLE) + CHAOS_CYCLE) % CHAOS_CYCLE
-    return smoothstep(0, 3.2, phase) * (1 - smoothstep(6.4, 10.6, phase))
+    return smoothstep(0, 2.4, phase) * (1 - smoothstep(4.2, 7.2, phase))
   }
 
   /* The value actually drawn eases toward the cycle, so a click lands as a
