@@ -359,8 +359,8 @@ img {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(120deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.55) 48%, rgba(15, 23, 42, 0.35) 100%),
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(59, 130, 246, 0.25), transparent 55%);
+    linear-gradient(120deg, rgba(7, 11, 24, 0.96) 0%, rgba(7, 11, 24, 0.86) 46%, rgba(7, 11, 24, 0.78) 100%),
+    radial-gradient(ellipse 80% 60% at 18% 50%, rgba(59, 130, 246, 0.2), transparent 55%);
 }
 
 #hero::after {
@@ -590,6 +590,33 @@ img {
   #hero .hero-badge {
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+/*--------------------------------------------------------------
+# Hero — live neural field
+--------------------------------------------------------------*/
+/* Sits above the darkened photo, below the copy. The canvas itself is
+   transparent: every glow is additive, so the backdrop still shows through. */
+#hero .hero-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease);
+}
+
+#hero .hero-scene.is-ready {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hero .hero-scene {
+    transition: none;
   }
 }
 
