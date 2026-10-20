@@ -2,10 +2,13 @@
  * Hero scene — a field of light.
  *
  * A uniform weave of dots covers the whole hero and behaves like a sheet of
- * cloth. Two wave trains roll through it, lifting the sheet toward the viewer,
- * gathering the grid on the rising faces and lighting a narrow band along each
- * crest. The whole sheet leans toward the cursor, dips where it passes, and
- * sends a ring out when you click. There are no lines anywhere.
+ * cloth. Three wave trains roll through it at different angles, speeds and
+ * wavelengths, measured from a doubly warped copy of each point so the folds
+ * braid and meander instead of running as straight stripes. The folds lift the
+ * sheet toward the viewer, gather the grid on their rising faces and light a
+ * soft band along each crest, with a bright seam where the cloth turns over.
+ * The whole sheet leans toward the cursor and dips where it passes. There are
+ * no lines anywhere.
  *
  * Every so often the weave lets go — the dots drift off their places, the grid
  * dissolves, and then it gathers itself back into line. Clicking does nothing;
@@ -169,8 +172,12 @@
       /* Folds. Three wave trains cross the weave at different angles, speeds
          and wavelengths — one broad swell carrying the sheet, one counter-wave
          that breaks up its rhythm, and a short ripple riding on top. */
-      vec2 dirA = normalize(vec2(0.72, 0.70));
-      vec2 dirB = normalize(vec2(-0.45, 0.89));
+      /* The fold directions drift very slowly, so the pattern never settles
+         into a fixed angle the eye can memorise. */
+      float angA = 0.77 + 0.16 * sin(uTime * 0.043);
+      float angB = 2.03 + 0.19 * sin(uTime * 0.037 + 1.4);
+      vec2 dirA = vec2(cos(angA), sin(angA));
+      vec2 dirB = vec2(cos(angB), sin(angB));
       vec2 dirC = normalize(vec2(0.94, -0.34));
 
       /* Domain warp: the folds are measured from a slowly displaced copy of
@@ -178,7 +185,13 @@
          straight printed stripes. */
       float warpX = sin(dot(p.xy, vec2(1.13, 0.87)) * 1.7 + uTime * 0.29);
       float warpY = sin(dot(p.xy, vec2(-0.74, 1.21)) * 2.1 - uTime * 0.24 + 1.1);
-      vec2 w = p.xy + vec2(warpX, warpY) * 0.13;
+
+      /* A second, finer octave braids the folds instead of leaving them as
+         clean arcs. */
+      warpX += sin(dot(p.xy, vec2(-2.3, 1.9)) * 3.3 - uTime * 0.53 + 2.6) * 0.34;
+      warpY += sin(dot(p.xy, vec2(2.7, 2.1)) * 3.9 + uTime * 0.61 + 0.4) * 0.34;
+
+      vec2 w = p.xy + vec2(warpX, warpY) * 0.21;
 
       float phaseA = dot(w, dirA) * 6.2 - uTime * 1.05;
       float phaseB = dot(w, dirB) * 3.6 - uTime * 0.62 + 2.3;
@@ -193,16 +206,23 @@
          gathers on the rising faces and stretches over the peaks. The short
          ripple is left out here — displacing by it would only roughen the
          lattice without adding shape. */
-      p.xy += dirA * cos(phaseA) * 0.03;
-      p.xy += dirB * cos(phaseB) * 0.013;
+      p.xy += dirA * cos(phaseA) * 0.046;
+      p.xy += dirB * cos(phaseB) * 0.021;
 
-      /* Bands of light ride the crests. The main band's width breathes, and the
-         short ripple fades in and out, so no two passes look the same. */
-      float bandWidth = mix(4.5, 6.5, 0.5 + 0.5 * sin(uTime * 0.19 + 0.7));
-      float ribbon = pow(0.5 + 0.5 * sin(phaseA), bandWidth);
-      float ribbonB = pow(0.5 + 0.5 * sin(phaseB), 8.0) * (0.38 + 0.16 * sin(uTime * 0.23));
-      float ribbonC = pow(0.5 + 0.5 * sin(phaseC), 10.0) * (0.22 + 0.16 * sin(uTime * 0.31 + 2.0));
-      float crest = min(ribbon + ribbonB + ribbonC, 1.0);
+      /* Light falls on the crests: the whole rising face glows, and a thin
+         seam runs along the top of the fold where the cloth turns over. The
+         short ripple adds a faint shimmer on top. Because the crests come from
+         the height field itself, every wave, warp and envelope shows up in
+         them at once. */
+      float lit = smoothstep(0.42, 0.94, sin(phaseA));
+
+      /* The band swells and thins along its own length, so it looks like a fold
+         rolling through rather than a stripe of constant width. */
+      lit *= 0.72 + 0.28 * sin(dot(w, dirA) * 1.35 + uTime * 0.47);
+
+      float cross = smoothstep(0.68, 1.0, sin(phaseB)) * (0.5 + 0.16 * sin(uTime * 0.23));
+      float shimmer = pow(0.5 + 0.5 * sin(phaseC), 7.0) * (0.2 + 0.14 * sin(uTime * 0.31 + 2.0));
+      float crest = min(lit + cross + shimmer, 1.0);
 
       /* A click sends a ring across the cloth: it lifts the weave and lights
          it, without pushing the dots out of line. */
@@ -243,7 +263,7 @@
       /* Relief: the far side of every fold sits deeper and dimmer, the near
          side comes forward, so the sheet has real thickness. */
       float relief = 0.5 + 0.5 * height;
-      vAlpha = (grow * (0.18 + crest * 0.9 + reach * 0.28 + ripple * 0.55) * mix(0.86, 1.06, relief)) * uAlphaMul * veil * uDim;
+      vAlpha = (grow * (0.24 + crest * 0.95 + reach * 0.28 + ripple * 0.55) * mix(0.86, 1.06, relief)) * uAlphaMul * veil * uDim;
       vColor = mix(vec3(0.34, 0.72, 1.0), vec3(0.96, 1.0, 1.0), min(crest * 0.8 + ripple + reach * 0.4, 1.0));
 
       gl_PointSize = clamp(aMeta.x * uSizeMul * (1.0 + ripple * 0.3) * uDpr * uFocal / depth, 1.0, 40.0 * uDpr);
