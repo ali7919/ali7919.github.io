@@ -7,6 +7,10 @@
  * crest. The whole sheet leans toward the cursor, dips where it passes, and
  * sends a ring out when you click. There are no lines anywhere.
  *
+ * Every so often the weave lets go — the dots drift off their places, the grid
+ * dissolves, and then it gathers itself back into line. Clicking does nothing;
+ * the field moves on its own.
+ *
  * The copy stays the loudest thing on screen: the field is dimmed where the
  * text lives, and dimmed again on narrow screens, where the copy is centred.
  *
@@ -46,8 +50,8 @@
   const SPACING = isCompact ? 0.047 : 0.046  // field units between dots
   const JITTER = 0.03                        // fraction of the spacing
 
-  const RIPPLE_SPEED = 0.82
-  const RIPPLE_GAP = 4.6
+  const RIPPLE_SPEED = 0.62
+  const RIPPLE_GAP = 10.5
 
   /*--------------------------------------------------------------
   # Geometry
@@ -61,6 +65,7 @@
   let nodeCount = 0
   let nodes = new Float32Array(0)
   let scatter = new Float32Array(0)
+  let drift = new Float32Array(0)
   let meta = new Float32Array(0)
 
   /* Positions live in "field units": y runs -1…1 from the middle of the hero
@@ -69,12 +74,15 @@
   const buildField = (aspect) => {
     const halfWidth = aspect * 1.06
     const halfHeight = 1.06
-    const columns = Math.ceil((halfWidth * 2) / SPACING) + 2
-    const rows = Math.ceil((halfHeight * 2) / SPACING) + 2
+    /* Extra rows and columns so a dot can drift outward without leaving a
+       bare edge behind it. */
+    const columns = Math.ceil((halfWidth * 2) / SPACING) + 4
+    const rows = Math.ceil((halfHeight * 2) / SPACING) + 4
 
     nodeCount = columns * rows
     nodes = new Float32Array(nodeCount * 3)
     scatter = new Float32Array(nodeCount * 3)
+    drift = new Float32Array(nodeCount * 3)
     meta = new Float32Array(nodeCount * 3)
 
     for (let row = 0; row < rows; row++) {
@@ -95,6 +103,15 @@
         scatter[index * 3 + 1] = y + (random() - 0.5) * 0.1
         scatter[index * 3 + 2] = 0
 
+        /* Where this dot wanders to when the weave comes apart. It keeps its
+           own direction, so the mess reads as the same dots drifting rather
+           than a new field appearing. */
+        const angle = random() * Math.PI * 2
+        const reach = SPACING * (0.55 + random() * 1.15)
+        drift[index * 3] = Math.cos(angle) * reach
+        drift[index * 3 + 1] = Math.sin(angle) * reach
+        drift[index * 3 + 2] = (random() - 0.5) * 0.42
+
         meta[index * 3] = 0.0095                            // size
         meta[index * 3 + 1] = 1                             // brightness
         meta[index * 3 + 2] = (column / columns) * 0.5 + (1 - row / rows) * 0.5
@@ -108,6 +125,7 @@
   const NODE_VERTEX = `
     attribute vec3 aPos;
     attribute vec3 aScatter;
+    attribute vec3 aDrift;
     attribute vec3 aMeta;
 
     uniform mat4 uProj;
@@ -117,6 +135,7 @@
     uniform vec2 uParallax;
     uniform vec2 uTilt;
     uniform float uProgress;
+    uniform float uChaos;
     uniform float uRippleRadius;
     uniform vec2 uRippleOrigin;
     uniform float uTime;
@@ -133,7 +152,7 @@
 
     /* A soft ring that peaks where the wave front is. */
     float ring(float distance, float radius) {
-      return smoothstep(0.20, 0.0, abs(distance - radius));
+      return smoothstep(0.30, 0.0, abs(distance - radius));
     }
 
     void main() {
@@ -142,6 +161,10 @@
       grow = grow * grow * (3.0 - 2.0 * grow);
 
       vec3 p = mix(aScatter, aPos, grow);
+
+      /* Now and then the weave lets go: every dot drifts off its own place, the
+         grid dissolves, and then it gathers itself back into line. */
+      p += aDrift * uChaos;
 
       /* Folds. Two wave trains cross the weave at different angles and
          speeds, the way a sheet of cloth moves when air passes under it. */
@@ -174,8 +197,8 @@
       ripple *= 1.0 - smoothstep(2.2, 3.4, uRippleRadius);
       ripple = min(ripple, 1.4);
 
-      p.z += ripple * 0.12;
-      p.xy += normalize(spread + vec2(0.0001)) * ripple * 0.008;
+      p.z += ripple * 0.07;
+      p.xy += normalize(spread + vec2(0.0001)) * ripple * 0.005;
 
       /* Pointer: the cloth dips under the cursor, and warms where it bends.
          No lateral push — pulling the weave sideways leaves a visible rim. */
@@ -205,7 +228,7 @@
       /* Relief: the far side of every fold sits deeper and dimmer, the near
          side comes forward, so the sheet has real thickness. */
       float relief = 0.5 + 0.5 * sin(phaseA);
-      vAlpha = (grow * (0.3 + crest * 0.55 + reach * 0.28 + ripple * 1.4) * mix(0.86, 1.06, relief)) * uAlphaMul * veil * uDim;
+      vAlpha = (grow * (0.3 + crest * 0.55 + reach * 0.28 + ripple * 0.55) * mix(0.86, 1.06, relief)) * uAlphaMul * veil * uDim;
       vColor = mix(vec3(0.34, 0.72, 1.0), vec3(0.96, 1.0, 1.0), min(crest * 0.8 + ripple + reach * 0.4, 1.0));
 
       gl_PointSize = clamp(aMeta.x * uSizeMul * (1.0 + ripple * 0.3) * uDpr * uFocal / depth, 1.0, 40.0 * uDpr);
@@ -275,6 +298,7 @@
   const buffers = {
     pos: gl.createBuffer(),
     scatter: gl.createBuffer(),
+    drift: gl.createBuffer(),
     meta: gl.createBuffer()
   }
 
@@ -283,11 +307,11 @@
 
   ;[
     'uProj', 'uCamZ', 'uHalfHeight', 'uPointer', 'uParallax', 'uTilt',
-    'uProgress', 'uRippleRadius', 'uRippleOrigin', 'uTime', 'uVeil', 'uDim',
+    'uProgress', 'uChaos', 'uRippleRadius', 'uRippleOrigin', 'uTime', 'uVeil', 'uDim',
     'uFocal', 'uDpr', 'uSizeMul', 'uAlphaMul', 'uSoftness'
   ].forEach((name) => { uniforms[name] = gl.getUniformLocation(program, name) })
 
-  ;['aPos', 'aScatter', 'aMeta'].forEach((name) => {
+  ;['aPos', 'aScatter', 'aDrift', 'aMeta'].forEach((name) => {
     attributes[name] = gl.getAttribLocation(program, name)
   })
 
@@ -300,6 +324,7 @@
     buildField(width / height)
     upload(buffers.pos, nodes)
     upload(buffers.scatter, scatter)
+    upload(buffers.drift, drift)
     upload(buffers.meta, meta)
   }
 
@@ -341,13 +366,27 @@
   let rafId = 0
   let inView = true
 
-  /* Ripples: one sweeps every few seconds from a random spot, and a click
-     sets one off wherever you are. */
+  /* Ripples: now and then one sweeps through from a random spot. They are a
+     whisper of movement, not an event. */
   const ripple = { originX: 0, originY: 0, start: 1.2 }
   const triggerRipple = (x, y) => {
     ripple.originX = x
     ripple.originY = y
     ripple.start = (performance.now() - startedAt) / 1000
+  }
+
+  /* The weave breathes: long stretches of clean lattice, then it lets go into
+     a loose drift and gathers itself back. The cycle is offset so the opening
+     assembly finishes before the first loosening starts. */
+  const CHAOS_CYCLE = 23
+  const CHAOS_FIRST = 8
+  const smoothstep = (edge0, edge1, x) => {
+    const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)))
+    return t * t * (3 - 2 * t)
+  }
+  const chaosAt = (time) => {
+    const phase = (((time - CHAOS_FIRST) % CHAOS_CYCLE) + CHAOS_CYCLE) % CHAOS_CYCLE
+    return smoothstep(0, 3.2, phase) * (1 - smoothstep(6.4, 10.6, phase))
   }
 
   const resize = () => {
@@ -421,6 +460,7 @@
     gl.uniform2f(uniforms.uParallax, parallax.x, parallax.y)
     gl.uniform2f(uniforms.uTilt, tilt.x, tilt.y)
     gl.uniform1f(uniforms.uProgress, progress)
+    gl.uniform1f(uniforms.uChaos, chaosAt(time))
     gl.uniform1f(uniforms.uRippleRadius, rippleRadius)
     gl.uniform2f(uniforms.uRippleOrigin, ripple.originX, ripple.originY)
     gl.uniform1f(uniforms.uTime, time)
@@ -436,6 +476,9 @@
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.scatter)
     gl.enableVertexAttribArray(attributes.aScatter)
     gl.vertexAttribPointer(attributes.aScatter, 3, gl.FLOAT, false, 0, 0)
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.drift)
+    gl.enableVertexAttribArray(attributes.aDrift)
+    gl.vertexAttribPointer(attributes.aDrift, 3, gl.FLOAT, false, 0, 0)
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.meta)
     gl.enableVertexAttribArray(attributes.aMeta)
     gl.vertexAttribPointer(attributes.aMeta, 3, gl.FLOAT, false, 0, 0)
@@ -477,14 +520,6 @@
     rafId = requestAnimationFrame(loop)
   }
 
-  const toField = (event) => {
-    const rect = hero.getBoundingClientRect()
-    return {
-      x: (((event.clientX - rect.left) / rect.width) * 2 - 1) * aspect,
-      y: -(((event.clientY - rect.top) / rect.height) * 2 - 1)
-    }
-  }
-
   window.addEventListener('pointermove', (event) => {
     const rect = hero.getBoundingClientRect()
     if (rect.bottom < 0 || rect.top > window.innerHeight) return
@@ -492,12 +527,6 @@
     pointerTarget.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
     pointerTarget.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1)
     lastPointerAt = performance.now()
-  }, { passive: true })
-
-  /* Clicking the hero sends a ripple out from that point. */
-  hero.addEventListener('pointerdown', (event) => {
-    const spot = toField(event)
-    triggerRipple(spot.x, spot.y)
   }, { passive: true })
 
   let resizeTimer = 0
